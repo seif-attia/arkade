@@ -24,12 +24,18 @@
     <ClCompile Include="src\tic-tac-toe\tic_tac_toe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\duck-invaders\duck_invaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tic-tac-toe\tic_tac_toe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\duck-invaders\duck_invaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

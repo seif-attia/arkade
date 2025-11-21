@@ -3,6 +3,7 @@
 #include "button.h"
 // game includes
 #include "tic-tac-toe\tic_tac_toe.h"
+#include "duck-invaders\duck_invaders.h"	
 
 
 int main()
@@ -15,8 +16,8 @@ int main()
 
 	// Variables
 
-	Button game1_button("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
-	Button game2_button("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
+	Button ticTacToeButton("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
+	Button duckInvadersButton("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
 	Button game3_button("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
 	Button game4_button("assets/sprites/white_button.png", { screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
 	Button game5_button("assets/sprites/white_button.png", { 2 * screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
@@ -28,13 +29,13 @@ int main()
 		bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 		// User Input
 
-		if (game1_button.isPressed(mousePosition, mousePressed))
+		if (ticTacToeButton.isPressed(mousePosition, mousePressed))
 		{
 			playTicTacToe(screenWidth, screenHeight);
 		}
-		if (game2_button.isPressed(mousePosition, mousePressed))
+		if (duckInvadersButton.isPressed(mousePosition, mousePressed))
 		{
-			std::cout << "game 2 button is pressed\n";
+			playDuckInvaders(screenWidth, screenHeight);
 		}
 		if (game3_button.isPressed(mousePosition, mousePressed))
 		{
@@ -52,8 +53,8 @@ int main()
 		// Drawing On Screen
 		BeginDrawing();
 		ClearBackground(BLACK);	// Clears every frame
-		game1_button.Draw();
-		game2_button.Draw();
+		ticTacToeButton.Draw();
+		duckInvadersButton.Draw();
 		game3_button.Draw();
 		game4_button.Draw();
 		game5_button.Draw();
