@@ -1,6 +1,8 @@
 #include <iostream>
 #include <raylib.h>
 #include "button.h"
+// game includes
+#include "tic-tac-toe\tic_tac_toe.h"
 
 
 int main()
@@ -28,7 +30,7 @@ int main()
 
 		if (game1_button.isPressed(mousePosition, mousePressed))
 		{
-			std::cout << "game 1 button is pressed\n";
+			playTicTacToe(screenWidth, screenHeight);
 		}
 		if (game2_button.isPressed(mousePosition, mousePressed))
 		{

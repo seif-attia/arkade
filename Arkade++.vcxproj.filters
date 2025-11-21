@@ -21,9 +21,15 @@
     <ClCompile Include="src\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tic-tac-toe\tic_tac_toe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tic-tac-toe\tic_tac_toe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
