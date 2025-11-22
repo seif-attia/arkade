@@ -43,3 +43,8 @@ bool Button::isPressed(Vector2 mousePos, bool mousePressed)
 
 	return false;
 }
+
+Vector2 Button::getPostion()
+{
+	return position;
+}

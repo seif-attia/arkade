@@ -3,7 +3,12 @@
 #include "tic_tac_toe.h"
 #include "cell.h"
 
-
+struct WinningLine
+{
+	Vector2 start;
+	Vector2 end;
+	bool active;
+};
 
 void cellDraw(const int screenWidth, const int screenHeight)
 {
@@ -61,15 +66,25 @@ void clearCells(Cell(&cells)[3][3])
 	}
 }
 
-bool checkWin(Cell(&cells)[3][3], int currentPlayer)
+bool checkWin(Cell(&cells)[3][3], int currentPlayer, WinningLine& line)
 {
+	int offSet = 100;
 	// check for row wins
 	for (int r = 0; r < 3; r++)
 	{
 		if (cells[r][0].getState() == currentPlayer &&
 			cells[r][1].getState() == currentPlayer &&
 			cells[r][2].getState() == currentPlayer)
+		{
+			Rectangle startRec = cells[r][0].getRectangle();
+			Rectangle endRec = cells[r][2].getRectangle();
+
+			line.start = { startRec.x + startRec.width / 2 - offSet,startRec.y + startRec.height / 2 };
+			line.end = { endRec.x + endRec.width / 2 + offSet, endRec.y + endRec.height / 2 };
+			line.active = true;
+
 			return true;
+		}
 	}
 
 	// check for column	wins
@@ -78,19 +93,46 @@ bool checkWin(Cell(&cells)[3][3], int currentPlayer)
 		if (cells[0][c].getState() == currentPlayer &&
 			cells[1][c].getState() == currentPlayer &&
 			cells[2][c].getState() == currentPlayer)
+		{
+			Rectangle startRec = cells[0][c].getRectangle();
+			Rectangle endRec = cells[2][c].getRectangle();
+
+			line.start = { startRec.x + startRec.width / 2 ,startRec.y + startRec.height / 2 - offSet };
+			line.end = { endRec.x + endRec.width / 2 , endRec.y + endRec.height / 2 + offSet };
+			line.active = true;
+
 			return true;
+		}
 	}
 
 	// check for diagonal wins
 	if (cells[0][0].getState() == currentPlayer &&
 		cells[1][1].getState() == currentPlayer &&
 		cells[2][2].getState() == currentPlayer)
+	{
+		Rectangle startRec = cells[0][0].getRectangle();
+		Rectangle endRec = cells[2][2].getRectangle();
+
+		line.start = { startRec.x + startRec.width / 2 - offSet,startRec.y + startRec.height / 2 - offSet };
+		line.end = { endRec.x + endRec.width / 2 + offSet, endRec.y + endRec.height / 2 + offSet };
+		line.active = true;
+
 		return true;
+	}
 
 	if (cells[2][0].getState() == currentPlayer &&
 		cells[1][1].getState() == currentPlayer &&
 		cells[0][2].getState() == currentPlayer)
+	{
+		Rectangle startRec = cells[2][0].getRectangle();
+		Rectangle endRec = cells[0][2].getRectangle();
+
+		line.start = { startRec.x + startRec.width / 2 - offSet,startRec.y + startRec.height / 2 + offSet };
+		line.end = { endRec.x + endRec.width / 2 + offSet, endRec.y + endRec.height / 2 - offSet };
+		line.active = true;
+
 		return true;
+	}
 
 	return false;
 }
@@ -103,6 +145,12 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
 	Texture2D xTexture = LoadTexture("assets/sprites/x.png");
+
+	GenTextureMipmaps(&oTexture);
+	GenTextureMipmaps(&xTexture);
+
+	SetTextureFilter(oTexture, TEXTURE_FILTER_TRILINEAR);
+	SetTextureFilter(xTexture, TEXTURE_FILTER_TRILINEAR);
 
 	Button quitButton("assets/sprites/white_button.png", { 50, 50 / 2 }, 0.2);
 
@@ -117,6 +165,8 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 	int currentPlayer = X_MARK;
 
 	Cell cells[3][3];
+
+	WinningLine line = { {0,0}, {0,0}, false };
 
 	// Init cell postions
 	for (int r = 0; r < 3; r++)
@@ -175,6 +225,13 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 			DrawText("O's TURN", screenWidth - textOffset, 20, 40, WHITE);
 		}
 
+
+		// Winning line Draw
+		if (line.active == true)
+		{
+			DrawLineEx(line.start, line.end, 15, RED);
+		}
+
 		if (canPlay == false)
 		{
 			if (IsMouseButtonUp(MOUSE_BUTTON_LEFT))
@@ -199,7 +256,7 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 								cells[r][c].setState(X_MARK);
 								moveCount++;
 
-								if (checkWin(cells, currentPlayer))
+								if (checkWin(cells, currentPlayer, line))
 									gameState = X_WON;
 								else if (moveCount == 9 && gameState == PLAYING)
 									gameState = DRAW;
@@ -211,7 +268,7 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 								cells[r][c].setState(O_MARK);
 								moveCount++;
 
-								if (checkWin(cells, currentPlayer))
+								if (checkWin(cells, currentPlayer, line))
 									gameState = O_WON;
 								else if (moveCount == 9 && gameState == PLAYING)
 									gameState = DRAW;
@@ -227,6 +284,7 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 
 
 		quitButton.Draw();
+		DrawText("quit", quitButton.getPostion().x + 12, quitButton.getPostion().y + 6, 20, BLACK);
 		if (quitButton.isPressed(mousePosition, mousePressed))
 		{
 			playing = false;

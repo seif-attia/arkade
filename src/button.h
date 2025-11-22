@@ -10,6 +10,8 @@ public:
 	void Draw();
 	bool isPressed(Vector2 mousePos, bool mousePressed);
 
+	Vector2 getPostion();
+
 private:
 	Texture2D texture;
 	Vector2 position;
