@@ -50,6 +50,51 @@ void drawMarks(Cell(&cells)[3][3], Texture2D oTexture, Texture2D xTexture)
 	}
 }
 
+void clearCells(Cell(&cells)[3][3])
+{
+	for (int r = 0; r < 3; r++)
+	{
+		for (int c = 0; c < 3; c++)
+		{
+			cells[r][c].setState(IS_EMPTY);
+		}
+	}
+}
+
+bool checkWin(Cell(&cells)[3][3], int currentPlayer)
+{
+	// check for row wins
+	for (int r = 0; r < 3; r++)
+	{
+		if (cells[r][0].getState() == currentPlayer &&
+			cells[r][1].getState() == currentPlayer &&
+			cells[r][2].getState() == currentPlayer)
+			return true;
+	}
+
+	// check for column	wins
+	for (int c = 0; c < 3; c++)
+	{
+		if (cells[0][c].getState() == currentPlayer &&
+			cells[1][c].getState() == currentPlayer &&
+			cells[2][c].getState() == currentPlayer)
+			return true;
+	}
+
+	// check for diagonal wins
+	if (cells[0][0].getState() == currentPlayer &&
+		cells[1][1].getState() == currentPlayer &&
+		cells[2][2].getState() == currentPlayer)
+		return true;
+
+	if (cells[2][0].getState() == currentPlayer &&
+		cells[1][1].getState() == currentPlayer &&
+		cells[2][0].getState() == currentPlayer)
+		return true;
+
+	return false;
+}
+
 
 void playTicTacToe(const int screenWidth, const int screenHeight)
 {
@@ -100,6 +145,16 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 
 		drawMarks(cells, oTexture, xTexture);
 
+		// game state text
+		if (gameState == X_WON)
+		{
+			DrawText("X WON", screenWidth / 2, 20, 20, WHITE);
+		}
+		else if (gameState == O_WON)
+		{
+			DrawText("O WON", screenWidth / 2, 20, 20, WHITE);
+		}
+
 		if (canPlay == false)
 		{
 			if (IsMouseButtonUp(MOUSE_BUTTON_LEFT))
@@ -122,12 +177,20 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 							if (currentPlayer == X_MARK && gameState == PLAYING)
 							{
 								cells[r][c].setState(X_MARK);
-								currentPlayer = O_MARK;
+
+								if (checkWin(cells, currentPlayer))
+									gameState = X_WON;
+								else
+									currentPlayer = O_MARK;
 							}
 							else if (currentPlayer == O_MARK && gameState == PLAYING)
 							{
 								cells[r][c].setState(O_MARK);
-								currentPlayer = X_MARK;
+
+								if (checkWin(cells, currentPlayer))
+									gameState = O_WON;
+								else
+									currentPlayer = X_MARK;
 							}
 						}
 					}
