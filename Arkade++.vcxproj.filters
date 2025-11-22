@@ -27,6 +27,9 @@
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tic-tac-toe\cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\duck-invaders\duck_invaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tic-tac-toe\cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -126,11 +126,13 @@
     <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\tic-tac-toe\cell.cpp" />
     <ClCompile Include="src\tic-tac-toe\tic_tac_toe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
+    <ClInclude Include="src\tic-tac-toe\cell.h" />
     <ClInclude Include="src\tic-tac-toe\tic_tac_toe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
