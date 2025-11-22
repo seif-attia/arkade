@@ -89,7 +89,7 @@ bool checkWin(Cell(&cells)[3][3], int currentPlayer)
 
 	if (cells[2][0].getState() == currentPlayer &&
 		cells[1][1].getState() == currentPlayer &&
-		cells[2][0].getState() == currentPlayer)
+		cells[0][2].getState() == currentPlayer)
 		return true;
 
 	return false;
@@ -148,11 +148,31 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 		// game state text
 		if (gameState == X_WON)
 		{
-			DrawText("X WON", screenWidth / 2, 20, 20, WHITE);
+			int textOffset = MeasureText("X WON", 40) / 2;
+			DrawText("X WON", screenWidth / 2 - textOffset, 20, 40, WHITE);
 		}
 		else if (gameState == O_WON)
 		{
-			DrawText("O WON", screenWidth / 2, 20, 20, WHITE);
+			int textOffset = MeasureText("O WON", 40) / 2;
+			DrawText("O WON", screenWidth / 2 - textOffset, 20, 40, WHITE);
+		}
+		else if (gameState == DRAW)
+		{
+			int textOffset = MeasureText("DRAW", 40) / 2;
+			DrawText("DRAW", screenWidth / 2 - textOffset, 20, 40, WHITE);
+		}
+
+
+		// current turn text
+		if (currentPlayer == X_MARK && gameState == PLAYING)
+		{
+			int textOffset = MeasureText("X's TURN", 40) + 20;
+			DrawText("X's TURN", screenWidth - textOffset, 20, 40, WHITE);
+		}
+		else if (currentPlayer == O_MARK && gameState == PLAYING)
+		{
+			int textOffset = MeasureText("O's TURN", 40) + 20;
+			DrawText("O's TURN", screenWidth - textOffset, 20, 40, WHITE);
 		}
 
 		if (canPlay == false)
@@ -177,18 +197,24 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 							if (currentPlayer == X_MARK && gameState == PLAYING)
 							{
 								cells[r][c].setState(X_MARK);
+								moveCount++;
 
 								if (checkWin(cells, currentPlayer))
 									gameState = X_WON;
+								else if (moveCount == 9 && gameState == PLAYING)
+									gameState = DRAW;
 								else
 									currentPlayer = O_MARK;
 							}
 							else if (currentPlayer == O_MARK && gameState == PLAYING)
 							{
 								cells[r][c].setState(O_MARK);
+								moveCount++;
 
 								if (checkWin(cells, currentPlayer))
 									gameState = O_WON;
+								else if (moveCount == 9 && gameState == PLAYING)
+									gameState = DRAW;
 								else
 									currentPlayer = X_MARK;
 							}
