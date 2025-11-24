@@ -138,8 +138,12 @@ bool checkWin(Cell(&cells)[3][3], int currentPlayer, WinningLine& line)
 }
 
 
-void playTicTacToe(const int screenWidth, const int screenHeight)
+void playTicTacToe()
 {
+	const int screenWidth = 800, screenHeight = 800;
+
+	SetWindowSize(screenWidth, screenHeight);
+
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
 
@@ -282,7 +286,7 @@ void playTicTacToe(const int screenWidth, const int screenHeight)
 		}
 
 
-
+		// quit button
 		quitButton.Draw();
 		DrawText("quit", quitButton.getPostion().x + 12, quitButton.getPostion().y + 6, 20, BLACK);
 		if (quitButton.isPressed(mousePosition, mousePressed))

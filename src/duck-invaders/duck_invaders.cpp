@@ -1,11 +1,30 @@
 #include <raylib.h>
 #include "../button.h"
 #include "duck_invaders.h"
+#include "duck.h"
 
-void playDuckInvaders(const int screenWidth, const int screenHeight)
+
+//Functions
+
+
+
+
+
+
+
+
+
+void playDuckInvaders()
 {
+
+	const int screenWidth = 1200;
+	const int screenHeight = 800;
+
+
+	SetWindowSize(screenWidth, screenHeight);
+
 	bool playing = true;
-	Button test("assets/sprites/white_button.png", { (float)screenWidth / 2, (float)screenHeight / 2 }, 0.5);
+	Button quitButton("assets/sprites/white_button.png", { 50, 50 / 2 }, 0.2);
 
 	while (playing)
 	{
@@ -19,9 +38,10 @@ void playDuckInvaders(const int screenWidth, const int screenHeight)
 
 		DrawText("DuckInvaders!", 190, 200, 20, WHITE);
 
-		test.Draw();
+		quitButton.Draw();
+		DrawText("quit", quitButton.getPostion().x + 12, quitButton.getPostion().y + 6, 20, BLACK);
 
-		if (test.isPressed(mousePosition, mousePressed))
+		if (quitButton.isPressed(mousePosition, mousePressed))
 		{
 			playing = false;
 		}

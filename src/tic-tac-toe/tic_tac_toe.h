@@ -8,5 +8,5 @@
 #define O_WON 2
 #define DRAW 3
 
-void playTicTacToe(const int screenWidth, const int screenHeight);
+void playTicTacToe();
 

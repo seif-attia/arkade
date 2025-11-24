@@ -8,6 +8,7 @@
 #include "tetris\tetris.h"
 
 
+
 int main()
 {
 	const int screenWidth = 1200;
@@ -33,19 +34,23 @@ int main()
 
 		if (ticTacToeButton.isPressed(mousePosition, mousePressed))
 		{
-			playTicTacToe(screenWidth, screenHeight);
+			playTicTacToe();
+			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (duckInvadersButton.isPressed(mousePosition, mousePressed))
 		{
-			playDuckInvaders(screenWidth, screenHeight);
+			playDuckInvaders();
+			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (snakeButton.isPressed(mousePosition, mousePressed))
 		{
-			playSnake(screenWidth, screenHeight);
+			playSnake();
+			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (tetrisButton.isPressed(mousePosition, mousePressed))
 		{
-			playTetris(screenWidth, screenHeight);
+			playTetris();
+			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (game5_button.isPressed(mousePosition, mousePressed))
 		{
@@ -60,6 +65,8 @@ int main()
 		snakeButton.Draw();
 		tetrisButton.Draw();
 		game5_button.Draw();
+
+
 
 
 		EndDrawing();

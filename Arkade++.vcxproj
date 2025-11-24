@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\button.cpp" />
+    <ClCompile Include="src\duck-invaders\duck.cpp" />
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\snake\snake.cpp" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h" />
+    <ClInclude Include="src\duck-invaders\duck.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
     <ClInclude Include="src\snake\snake.h" />
     <ClInclude Include="src\tetris\tetris.h" />

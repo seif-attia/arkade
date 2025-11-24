@@ -3,8 +3,13 @@
 #include "..\button.h"
 
 
-void playTetris(const int screenWidth, const int screenHeight)
+void playTetris()
 {
+
+	const int screenWidth = 1200;
+	const int screenHeight = 800;
+
+	SetWindowSize(screenWidth, screenHeight);
 
 	bool playing = true;
 
