@@ -47,3 +47,7 @@ void playSnake(const int screenWidth, const int screenHeight)
 		EndDrawing();
 	}
 }
+
+
+// comment
+// new commment
