@@ -4,6 +4,8 @@
 // game includes
 #include "tic-tac-toe\tic_tac_toe.h"
 #include "duck-invaders\duck_invaders.h"	
+#include "snake\snake.h"
+#include "tetris\tetris.h"
 
 
 int main()
@@ -18,8 +20,8 @@ int main()
 
 	Button ticTacToeButton("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
 	Button duckInvadersButton("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
-	Button game3_button("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
-	Button game4_button("assets/sprites/white_button.png", { screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
+	Button snakeButton("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
+	Button tetrisButton("assets/sprites/white_button.png", { screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
 	Button game5_button("assets/sprites/white_button.png", { 2 * screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
 
 	// Game Loop
@@ -37,13 +39,13 @@ int main()
 		{
 			playDuckInvaders(screenWidth, screenHeight);
 		}
-		if (game3_button.isPressed(mousePosition, mousePressed))
+		if (snakeButton.isPressed(mousePosition, mousePressed))
 		{
-			std::cout << "game 3 button is pressed\n";
+			playSnake(screenWidth, screenHeight);
 		}
-		if (game4_button.isPressed(mousePosition, mousePressed))
+		if (tetrisButton.isPressed(mousePosition, mousePressed))
 		{
-			std::cout << "game 4 button is pressed\n";
+			playTetris(screenWidth, screenHeight);
 		}
 		if (game5_button.isPressed(mousePosition, mousePressed))
 		{
@@ -55,8 +57,8 @@ int main()
 		ClearBackground(BLACK);	// Clears every frame
 		ticTacToeButton.Draw();
 		duckInvadersButton.Draw();
-		game3_button.Draw();
-		game4_button.Draw();
+		snakeButton.Draw();
+		tetrisButton.Draw();
 		game5_button.Draw();
 
 
