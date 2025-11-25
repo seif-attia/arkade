@@ -4,8 +4,11 @@
 class Button
 {
 public:
+	Button();
 	Button(const char* imagePath, Vector2 buttonPosition, float scale);	// Constructor
 	~Button();	// Destructor
+
+	void Init(const char* imagePath, Vector2 buttonPosition, float scale);
 
 	void Draw();
 	bool isPressed(Vector2 mousePos, bool mousePressed);

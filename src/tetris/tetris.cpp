@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "tetris.h"
 #include "..\button.h"
+#include "..\playAgainMenu.h"
 
 
 void playTetris()
@@ -14,6 +15,8 @@ void playTetris()
 	bool playing = true;
 
 	Button quitButton("assets/sprites/white_button.png", { (float)screenWidth / 2, (float)screenHeight / 2 }, 0.5);
+
+
 
 
 	while (playing == true)
@@ -45,6 +48,7 @@ void playTetris()
 		ClearBackground(BLACK);
 
 		quitButton.Draw();
+
 
 
 

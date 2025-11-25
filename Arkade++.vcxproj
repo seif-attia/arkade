@@ -127,6 +127,7 @@
     <ClCompile Include="src\duck-invaders\duck.cpp" />
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\playAgainMenu.cpp" />
     <ClCompile Include="src\snake\snake.cpp" />
     <ClCompile Include="src\tetris\tetris.cpp" />
     <ClCompile Include="src\tic-tac-toe\cell.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="src\button.h" />
     <ClInclude Include="src\duck-invaders\duck.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
+    <ClInclude Include="src\playAgainMenu.h" />
     <ClInclude Include="src\snake\snake.h" />
     <ClInclude Include="src\tetris\tetris.h" />
     <ClInclude Include="src\tic-tac-toe\cell.h" />
