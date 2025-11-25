@@ -69,7 +69,7 @@ void clearCells(Cell(&cells)[3][3])
 
 bool checkWin(Cell(&cells)[3][3], int currentPlayer, WinningLine& line)
 {
-	int offSet = 100;
+	int offSet = 110;
 	// check for row wins
 	for (int r = 0; r < 3; r++)
 	{
