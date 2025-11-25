@@ -2,6 +2,7 @@
 #include "../button.h"
 #include "tic_tac_toe.h"
 #include "cell.h"
+#include <string>
 
 struct WinningLine
 {
@@ -138,9 +139,10 @@ bool checkWin(Cell(&cells)[3][3], int currentPlayer, WinningLine& line)
 }
 
 
+
 void playTicTacToe()
 {
-	const int screenWidth = 800, screenHeight = 800;
+	const int screenWidth = 1300, screenHeight = 800;
 
 	SetWindowSize(screenWidth, screenHeight);
 
@@ -157,6 +159,8 @@ void playTicTacToe()
 	SetTextureFilter(xTexture, TEXTURE_FILTER_TRILINEAR);
 
 	Button quitButton("assets/sprites/white_button.png", { 50, 50 / 2 }, 0.2);
+	Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
+
 
 	float sideLength = 700;
 	float cellSize = sideLength / 3;
@@ -167,6 +171,8 @@ void playTicTacToe()
 	int moveCount = 0;
 	int gameState = PLAYING;
 	int currentPlayer = X_MARK;
+	int xScore = 0;
+	int oScore = 0;
 
 	Cell cells[3][3];
 
@@ -181,6 +187,17 @@ void playTicTacToe()
 			cells[r][c].setRectangle(rect);
 		}
 	}
+
+
+	// restartGame function
+	auto restartGame = [&cells, &moveCount, &gameState, &currentPlayer, &line]()
+		{
+			clearCells(cells);
+			moveCount = 0;
+			gameState = PLAYING;
+			currentPlayer = X_MARK;
+			line.active = false;
+		};
 
 
 	while (playing)
@@ -203,17 +220,17 @@ void playTicTacToe()
 		if (gameState == X_WON)
 		{
 			int textOffset = MeasureText("X WON", 40) / 2;
-			DrawText("X WON", screenWidth / 2 - textOffset, 20, 40, WHITE);
+			DrawText("X WON", screenWidth / 2 - textOffset, 20, 40, RED);
 		}
 		else if (gameState == O_WON)
 		{
 			int textOffset = MeasureText("O WON", 40) / 2;
-			DrawText("O WON", screenWidth / 2 - textOffset, 20, 40, WHITE);
+			DrawText("O WON", screenWidth / 2 - textOffset, 20, 40, RED);
 		}
 		else if (gameState == DRAW)
 		{
 			int textOffset = MeasureText("DRAW", 40) / 2;
-			DrawText("DRAW", screenWidth / 2 - textOffset, 20, 40, WHITE);
+			DrawText("DRAW", screenWidth / 2 - textOffset, 20, 40, GREEN);
 		}
 
 
@@ -228,6 +245,19 @@ void playTicTacToe()
 			int textOffset = MeasureText("O's TURN", 40) + 20;
 			DrawText("O's TURN", screenWidth - textOffset, 20, 40, WHITE);
 		}
+
+		// Player score text
+
+		std::string x_score = "Player X: " + std::to_string(xScore);
+		std::string o_score = "Player O: " + std::to_string(oScore);
+
+		int x_scoreXPos = cells[0][0].getRectangle().x;
+		int x_scoreYPos = cells[0][0].getRectangle().y;
+		int o_scoreXPos = cells[0][2].getRectangle().x + cells[0][2].getRectangle().width - MeasureText(o_score.c_str(), 35);
+		int o_scoreYPos = cells[0][2].getRectangle().y;
+
+		DrawText(x_score.c_str(), x_scoreXPos, x_scoreYPos - 60, 35, BLACK);
+		DrawText(o_score.c_str(), o_scoreXPos, o_scoreYPos - 60, 35, BLACK);
 
 
 		// Winning line Draw
@@ -261,7 +291,10 @@ void playTicTacToe()
 								moveCount++;
 
 								if (checkWin(cells, currentPlayer, line))
+								{
 									gameState = X_WON;
+									xScore++;
+								}
 								else if (moveCount == 9 && gameState == PLAYING)
 									gameState = DRAW;
 								else
@@ -273,7 +306,10 @@ void playTicTacToe()
 								moveCount++;
 
 								if (checkWin(cells, currentPlayer, line))
+								{
 									gameState = O_WON;
+									oScore++;
+								}
 								else if (moveCount == 9 && gameState == PLAYING)
 									gameState = DRAW;
 								else
@@ -292,6 +328,15 @@ void playTicTacToe()
 		if (quitButton.isPressed(mousePosition, mousePressed))
 		{
 			playing = false;
+		}
+
+
+		// restart button
+		restartButtton.Draw();
+		DrawText("Play Again", restartButtton.getPostion().x + 9, restartButtton.getPostion().y + 20, 20, BLACK);
+		if (restartButtton.isPressed(mousePosition, mousePressed))
+		{
+			restartGame();
 		}
 		EndDrawing();
 	}
