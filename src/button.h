@@ -8,6 +8,10 @@ public:
 	Button(const char* imagePath, Vector2 buttonPosition, float scale);	// Constructor
 	~Button();	// Destructor
 
+
+	float getWidth();
+	float getHeight();
+
 	void Init(const char* imagePath, Vector2 buttonPosition, float scale);
 
 	void Draw();

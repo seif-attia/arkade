@@ -3,6 +3,7 @@
 #include "tic_tac_toe.h"
 #include "cell.h"
 #include <string>
+#include "..\playAgainMenu.h"
 
 struct WinningLine
 {
@@ -148,6 +149,7 @@ void playTicTacToe()
 
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
+	bool showMenu = false;
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
 	Texture2D xTexture = LoadTexture("assets/sprites/x.png");
@@ -160,6 +162,8 @@ void playTicTacToe()
 
 	Button quitButton("assets/sprites/white_button.png", { 50, 50 / 2 }, 0.2);
 	Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
+
+	Menu menu("assets/sprites/menu_button.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
 
 
 	float sideLength = 700;
@@ -274,6 +278,22 @@ void playTicTacToe()
 			}
 		}
 
+
+		// Menu buttons input code
+		if (showMenu == true)
+		{
+			if (menu.quitButton.isPressed(mousePosition, mousePressed))
+				playing = false;
+			if (menu.playAgainButton.isPressed(mousePosition, mousePressed))
+			{
+				showMenu = false;
+				canPlay = false; // avoid mouse double clicking
+				restartGame();
+			}
+
+			menu.Draw();
+		}
+
 		// Check for cell presses
 		if (canPlay)
 		{
@@ -293,10 +313,14 @@ void playTicTacToe()
 								if (checkWin(cells, currentPlayer, line))
 								{
 									gameState = X_WON;
+									showMenu = true;
 									xScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
+								{
 									gameState = DRAW;
+									showMenu = true;
+								}
 								else
 									currentPlayer = O_MARK;
 							}
@@ -308,10 +332,14 @@ void playTicTacToe()
 								if (checkWin(cells, currentPlayer, line))
 								{
 									gameState = O_WON;
+									showMenu = true;
 									oScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
+								{
 									gameState = DRAW;
+									showMenu = true;
+								}
 								else
 									currentPlayer = X_MARK;
 							}

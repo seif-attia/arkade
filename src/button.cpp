@@ -75,3 +75,14 @@ Vector2 Button::getPostion()
 {
 	return position;
 }
+
+
+float Button::getWidth()
+{
+	return (float)texture.width;
+}
+
+float Button::getHeight()
+{
+	return (float)texture.height;
+}
