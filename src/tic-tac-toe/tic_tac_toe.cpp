@@ -150,7 +150,6 @@ void playTicTacToe()
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
 	bool showMenu = false;
-	bool menuButtonPressed = false;
 
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
@@ -291,16 +290,12 @@ void playTicTacToe()
 			{
 				showMenu = false;
 				canPlay = false; // avoid mouse double clicking
-				if (menuButtonPressed == true)
-					menuButtonPressed = false;
 				restartGame();
 			}
 
 			if (menu.closeMenuButton.isPressed(mousePosition, mousePressed))
 			{
 				showMenu = false;
-				if (menuButtonPressed == true)
-					menuButtonPressed = false;
 			}
 
 			menu.Draw();
@@ -327,14 +322,12 @@ void playTicTacToe()
 								{
 									gameState = X_WON;
 									showMenu = true;
-									menuButtonPressed = true;
 									xScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
 									showMenu = true;
-									menuButtonPressed = true;
 								}
 								else
 									currentPlayer = O_MARK;
@@ -348,14 +341,12 @@ void playTicTacToe()
 								{
 									gameState = O_WON;
 									showMenu = true;
-									menuButtonPressed = true;
 									oScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
 									showMenu = true;
-									menuButtonPressed = true;
 								}
 								else
 									currentPlayer = X_MARK;
@@ -374,18 +365,7 @@ void playTicTacToe()
 		// menu button
 		if (menuButton.isPressed(mousePosition, mousePressed))
 		{
-			if (menuButtonPressed == false)
-			{
-				showMenu = true;
-				menuButtonPressed = true;
-
-			}
-			else
-			{
-				menuButtonPressed = false;
-				showMenu = false;
-			}
-
+			showMenu = !showMenu;
 		}
 
 
