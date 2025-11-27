@@ -309,6 +309,7 @@ void playTicTacToe()
 		// Check for cell presses
 		if (canPlay)
 		{
+
 			for (int r = 0; r < 3; r++)
 			{
 				for (int c = 0; c < 3; c++)
@@ -326,12 +327,14 @@ void playTicTacToe()
 								{
 									gameState = X_WON;
 									showMenu = true;
+									menuButtonPressed = true;
 									xScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
 									showMenu = true;
+									menuButtonPressed = true;
 								}
 								else
 									currentPlayer = O_MARK;
@@ -345,12 +348,14 @@ void playTicTacToe()
 								{
 									gameState = O_WON;
 									showMenu = true;
+									menuButtonPressed = true;
 									oScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
 									showMenu = true;
+									menuButtonPressed = true;
 								}
 								else
 									currentPlayer = X_MARK;
@@ -365,6 +370,8 @@ void playTicTacToe()
 		// quit button
 		menuButton.Draw();
 		//DrawText("quit", menuButton.getPostion().x + 12, menuButton.getPostion().y + 6, 20, BLACK);
+
+		// menu button
 		if (menuButton.isPressed(mousePosition, mousePressed))
 		{
 			if (menuButtonPressed == false)
