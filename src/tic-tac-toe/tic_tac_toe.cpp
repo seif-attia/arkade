@@ -360,7 +360,6 @@ void playTicTacToe()
 
 		// quit button
 		menuButton.Draw();
-		//DrawText("quit", menuButton.getPostion().x + 12, menuButton.getPostion().y + 6, 20, BLACK);
 
 		// menu button
 		if (menuButton.isPressed(mousePosition, mousePressed))
@@ -369,13 +368,7 @@ void playTicTacToe()
 		}
 
 
-		// restart button
-		//restartButtton.Draw();
-		/*DrawText("Play Again", restartButtton.getPostion().x + 9, restartButtton.getPostion().y + 20, 20, BLACK);
-		if (restartButtton.isPressed(mousePosition, mousePressed))
-		{
-			restartGame();
-		}*/
+
 		EndDrawing();
 	}
 
