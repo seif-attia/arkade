@@ -11,11 +11,13 @@ public:
 
 	Button quitButton;
 	Button playAgainButton;
+	Button closeMenuButton;
 
 private:
 	Texture2D texture;
 	Vector2 position;
 	Vector2 quitPosition;
 	Vector2 playAgainPosition;
+	Vector2 closeMenuPosition;
 
 };

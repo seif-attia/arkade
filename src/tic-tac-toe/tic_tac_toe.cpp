@@ -150,6 +150,8 @@ void playTicTacToe()
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
 	bool showMenu = false;
+	bool menuButtonPressed = false;
+
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
 	Texture2D xTexture = LoadTexture("assets/sprites/x.png");
@@ -160,8 +162,8 @@ void playTicTacToe()
 	SetTextureFilter(oTexture, TEXTURE_FILTER_TRILINEAR);
 	SetTextureFilter(xTexture, TEXTURE_FILTER_TRILINEAR);
 
-	Button quitButton("assets/sprites/white_button.png", { 50, 50 / 2 }, 0.2);
-	Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
+	Button menuButton("assets/sprites/menu.png", { 40, 30 }, 0.12);
+	//Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
 
 	Menu menu("assets/sprites/menu_button.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
 
@@ -282,13 +284,23 @@ void playTicTacToe()
 		// Menu buttons input code
 		if (showMenu == true)
 		{
+			canPlay = false;
 			if (menu.quitButton.isPressed(mousePosition, mousePressed))
 				playing = false;
 			if (menu.playAgainButton.isPressed(mousePosition, mousePressed))
 			{
 				showMenu = false;
 				canPlay = false; // avoid mouse double clicking
+				if (menuButtonPressed == true)
+					menuButtonPressed = false;
 				restartGame();
+			}
+
+			if (menu.closeMenuButton.isPressed(mousePosition, mousePressed))
+			{
+				showMenu = false;
+				if (menuButtonPressed == true)
+					menuButtonPressed = false;
 			}
 
 			menu.Draw();
@@ -351,21 +363,32 @@ void playTicTacToe()
 
 
 		// quit button
-		quitButton.Draw();
-		DrawText("quit", quitButton.getPostion().x + 12, quitButton.getPostion().y + 6, 20, BLACK);
-		if (quitButton.isPressed(mousePosition, mousePressed))
+		menuButton.Draw();
+		//DrawText("quit", menuButton.getPostion().x + 12, menuButton.getPostion().y + 6, 20, BLACK);
+		if (menuButton.isPressed(mousePosition, mousePressed))
 		{
-			playing = false;
+			if (menuButtonPressed == false)
+			{
+				showMenu = true;
+				menuButtonPressed = true;
+
+			}
+			else
+			{
+				menuButtonPressed = false;
+				showMenu = false;
+			}
+
 		}
 
 
 		// restart button
-		restartButtton.Draw();
-		DrawText("Play Again", restartButtton.getPostion().x + 9, restartButtton.getPostion().y + 20, 20, BLACK);
+		//restartButtton.Draw();
+		/*DrawText("Play Again", restartButtton.getPostion().x + 9, restartButtton.getPostion().y + 20, 20, BLACK);
 		if (restartButtton.isPressed(mousePosition, mousePressed))
 		{
 			restartGame();
-		}
+		}*/
 		EndDrawing();
 	}
 

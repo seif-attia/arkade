@@ -27,8 +27,12 @@ Menu::Menu(const char* imagePath, Vector2 menuPosition, float scale)
 	playAgainPosition.x = menuPosition.x + newWidth - newWidth / 4;
 	playAgainPosition.y = menuPosition.y + newHeight / 2;
 
+	closeMenuPosition.x = menuPosition.x + newWidth - 30;
+	closeMenuPosition.y = menuPosition.y + 30;
+
 	quitButton.Init("assets/sprites/menu_buttons.png", quitPosition, 0.3);
 	playAgainButton.Init("assets/sprites/menu_buttons.png", playAgainPosition, 0.3);
+	closeMenuButton.Init("assets/sprites/exit_button.png", closeMenuPosition, 0.15);
 
 	position = menuPosition;
 }
@@ -39,6 +43,7 @@ void Menu::Draw()
 	DrawTextureV(texture, position, WHITE);
 	quitButton.Draw();
 	playAgainButton.Draw();
+	closeMenuButton.Draw();
 
 	const int FONT_SIZE = 25;
 
