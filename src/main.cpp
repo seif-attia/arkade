@@ -1,11 +1,8 @@
-#include <iostream>
 #include <raylib.h>
 #include "button.h"
-// game includes
-#include "tic-tac-toe\tic_tac_toe.h"
-#include "duck-invaders\duck_invaders.h"	
-#include "snake\snake.h"
-#include "tetris\tetris.h"
+
+#include "game_center.h"
+
 
 
 
@@ -14,57 +11,54 @@ int main()
 	const int screenWidth = 1200;
 	const int screenHeight = 800;
 
-	InitWindow(screenWidth, screenHeight, "placeholder");
+	InitWindow(screenWidth, screenHeight, "Arkade++");
 	SetTargetFPS(60);
 
 	// Variables
 
-	Button ticTacToeButton("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
-	Button duckInvadersButton("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
-	Button snakeButton("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
-	Button tetrisButton("assets/sprites/white_button.png", { screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
-	Button game5_button("assets/sprites/white_button.png", { 2 * screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
+	Button gameCenterButton("assets/sprites/white_button.png", { screenWidth / 2, 2 * screenHeight / 3 }, 0.8);
+
+	// LOGO LOADING
+	const float logoScale = 0.3;
+	Image image = LoadImage("assets/sprites/arkade_logo.png");
+	int newWidth = image.width * logoScale;
+	int newHeight = image.height * logoScale;
+
+
+	ImageResize(&image, newWidth, newHeight);
+	Texture2D logo = LoadTextureFromImage(image);
+	UnloadImage(image);
 
 	// Game Loop
 	while (WindowShouldClose() == false)
 	{
 		Vector2 mousePosition = GetMousePosition();
 		bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
-		// User Input
 
-		if (ticTacToeButton.isPressed(mousePosition, mousePressed))
+		// User Input
+		if (gameCenterButton.isPressed(mousePosition, mousePressed))
 		{
-			playTicTacToe();
-			SetWindowSize(screenWidth, screenHeight);
-		}
-		if (duckInvadersButton.isPressed(mousePosition, mousePressed))
-		{
-			playDuckInvaders();
-			SetWindowSize(screenWidth, screenHeight);
-		}
-		if (snakeButton.isPressed(mousePosition, mousePressed))
-		{
-			playSnake();
-			SetWindowSize(screenWidth, screenHeight);
-		}
-		if (tetrisButton.isPressed(mousePosition, mousePressed))
-		{
-			playTetris();
-			SetWindowSize(screenWidth, screenHeight);
-		}
-		if (game5_button.isPressed(mousePosition, mousePressed))
-		{
-			std::cout << "game 5 button is pressed\n";
+			startGameCenter();
 		}
 
 		// Drawing On Screen
 		BeginDrawing();
-		ClearBackground(BLACK);	// Clears every frame
-		ticTacToeButton.Draw();
-		duckInvadersButton.Draw();
-		snakeButton.Draw();
-		tetrisButton.Draw();
-		game5_button.Draw();
+		ClearBackground(BLUE);	// Clears every frame
+
+
+		// LOGO
+
+		DrawTexture(logo, screenWidth / 2 - logo.width / 2, screenHeight / 3 - logo.height / 2, WHITE);
+
+
+		// Start Button
+		gameCenterButton.Draw();
+		// Start text
+		const int startFont = 50;
+		int startOffset = MeasureText("START", startFont) / 2;
+		int startX = gameCenterButton.getPostion().x + gameCenterButton.getWidth() / 2 - startOffset;
+		int startY = gameCenterButton.getPostion().y + gameCenterButton.getHeight() / 2 - startFont / 2;
+		DrawText("START", startX, startY, startFont, BLACK);
 
 
 
@@ -72,6 +66,7 @@ int main()
 		EndDrawing();
 	}
 
+	UnloadTexture(logo);
 	CloseWindow();
 	return 0;
 }
