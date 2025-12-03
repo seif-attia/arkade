@@ -3,7 +3,7 @@
 
 #include "game_center.h"
 
-
+Sound buttonPressSound;
 
 
 int main()
@@ -14,25 +14,26 @@ int main()
 	InitWindow(screenWidth, screenHeight, "Arkade++");
 	SetTargetFPS(60);
 
+	InitAudioDevice();
+
+	//Sounds
+
+	Sound startSound = LoadSound("assets/sounds/gamestart.mp3");
+
+	buttonPressSound = LoadSound("assets/sounds/Button_Press.mp3");
+
 	// Variables
 
-	Button gameCenterButton("assets/sprites/white_button.png", { screenWidth / 2, 3 * screenHeight / 4 }, 0.8);
-
-	// LOGO LOADING
-	/*const float logoScale = 0.3;
-	Image image = LoadImage("assets/sprites/arkade_logo.png");
-	int newWidth = image.width * logoScale;
-	int newHeight = image.height * logoScale;
+	Button gameCenterButton("assets/sprites/start.png", { screenWidth / 2, 3 * screenHeight / 4 }, 1);
 
 
-	ImageResize(&image, newWidth, newHeight);
-	Texture2D logo = LoadTextureFromImage(image);
-	UnloadImage(image);*/
-
+	Image icon = LoadImage("assets/sprites/arkade_icon.png");
 
 	// Start Background
 
 	Texture2D background = LoadTexture("assets/sprites/start_background.png");
+
+	SetWindowIcon(icon);
 
 
 
@@ -46,6 +47,7 @@ int main()
 		// User Input
 		if (gameCenterButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(startSound);
 			startGameCenter();
 		}
 
@@ -53,30 +55,21 @@ int main()
 		BeginDrawing();
 		ClearBackground(BLUE);	// Clears every frame
 
-
-		// LOGO
-
-		//DrawTexture(logo, screenWidth / 2 - logo.width / 2, screenHeight / 3 - logo.height / 2, WHITE);
-
 		DrawTexture(background, 0, 0, WHITE);
 
 
 		// Start Button
 		gameCenterButton.Draw();
-		// Start text
-		const int startFont = 50;
-		int startOffset = MeasureText("START", startFont) / 2;
-		int startX = gameCenterButton.getPostion().x + gameCenterButton.getWidth() / 2 - startOffset;
-		int startY = gameCenterButton.getPostion().y + gameCenterButton.getHeight() / 2 - startFont / 2;
-		DrawText("START", startX, startY, startFont, BLACK);
-
 
 
 
 		EndDrawing();
 	}
 
+	UnloadSound(startSound);
+	UnloadSound(buttonPressSound);
 	UnloadTexture(background);
+	UnloadImage(icon);
 	CloseWindow();
 	return 0;
 }

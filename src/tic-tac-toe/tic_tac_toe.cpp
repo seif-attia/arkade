@@ -5,6 +5,10 @@
 #include <string>
 #include "..\playAgainMenu.h"
 
+
+
+extern Sound buttonPressSound;
+
 struct WinningLine
 {
 	Vector2 start;
@@ -143,9 +147,12 @@ bool checkWin(Cell(&cells)[3][3], int currentPlayer, WinningLine& line)
 
 void playTicTacToe()
 {
-	const int screenWidth = 1300, screenHeight = 800;
+	const int screenWidth = 1200, screenHeight = 800;
 
 	SetWindowSize(screenWidth, screenHeight);
+
+	// turn color
+	Color turn_color = { 255,176,3, 255 };
 
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
@@ -155,16 +162,22 @@ void playTicTacToe()
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
 	Texture2D xTexture = LoadTexture("assets/sprites/x.png");
 
+	Font font = LoadFont("assets/fonts/MontserratAlternates-Bold.otf");
+
+	// Background
+	Texture2D background = LoadTexture("assets/sprites/tic-tac-toe-background.png");
+
+
 	GenTextureMipmaps(&oTexture);
 	GenTextureMipmaps(&xTexture);
 
 	SetTextureFilter(oTexture, TEXTURE_FILTER_TRILINEAR);
 	SetTextureFilter(xTexture, TEXTURE_FILTER_TRILINEAR);
 
-	Button menuButton("assets/sprites/menu.png", { 40, 30 }, 0.12);
+	Button menuButton("assets/sprites/setting.png", { 40, 40 }, 0.9);
 	//Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
 
-	Menu menu("assets/sprites/menu_button.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
+	Menu menu("assets/sprites/menu.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
 
 
 	float sideLength = 700;
@@ -217,6 +230,9 @@ void playTicTacToe()
 
 		BeginDrawing();
 		ClearBackground(BLUE);
+		// Background 
+		DrawTexture(background, 0, 0, WHITE);
+
 		cellDraw(screenWidth, screenHeight);
 
 		drawMarks(cells, oTexture, xTexture);
@@ -225,30 +241,32 @@ void playTicTacToe()
 		if (gameState == X_WON)
 		{
 			int textOffset = MeasureText("X WON", 40) / 2;
-			DrawText("X WON", screenWidth / 2 - textOffset, 20, 40, RED);
+			DrawTextEx(font, "X WON", { (float)screenWidth / 2 - textOffset, 20 }, 40, 3, RED);
 		}
 		else if (gameState == O_WON)
 		{
 			int textOffset = MeasureText("O WON", 40) / 2;
-			DrawText("O WON", screenWidth / 2 - textOffset, 20, 40, RED);
+			DrawTextEx(font, "O WON", { (float)screenWidth / 2 - textOffset, 20 }, 40, 3, RED);
 		}
 		else if (gameState == DRAW)
 		{
 			int textOffset = MeasureText("DRAW", 40) / 2;
-			DrawText("DRAW", screenWidth / 2 - textOffset, 20, 40, GREEN);
+			DrawTextEx(font, "DRAW", { (float)screenWidth / 2 - textOffset, 20 }, 40, 3, GREEN);
+
 		}
+
 
 
 		// current turn text
 		if (currentPlayer == X_MARK && gameState == PLAYING)
 		{
 			int textOffset = MeasureText("X's TURN", 40) + 20;
-			DrawText("X's TURN", screenWidth - textOffset, 20, 40, WHITE);
+			DrawTextEx(font, "X's TURN", { (float)screenWidth - textOffset, 20 }, 40, 3, turn_color);
 		}
 		else if (currentPlayer == O_MARK && gameState == PLAYING)
 		{
 			int textOffset = MeasureText("O's TURN", 40) + 20;
-			DrawText("O's TURN", screenWidth - textOffset, 20, 40, WHITE);
+			DrawTextEx(font, "O's TURN", { (float)screenWidth - textOffset, 20 }, 40, 3, turn_color);
 		}
 
 		// Player score text
@@ -258,11 +276,11 @@ void playTicTacToe()
 
 		int x_scoreXPos = cells[0][0].getRectangle().x;
 		int x_scoreYPos = cells[0][0].getRectangle().y;
-		int o_scoreXPos = cells[0][2].getRectangle().x + cells[0][2].getRectangle().width - MeasureText(o_score.c_str(), 35);
+		int o_scoreXPos = cells[0][2].getRectangle().x + cells[0][2].getRectangle().width - MeasureText(o_score.c_str(), 35) - 25;
 		int o_scoreYPos = cells[0][2].getRectangle().y;
 
-		DrawText(x_score.c_str(), x_scoreXPos, x_scoreYPos - 60, 35, BLACK);
-		DrawText(o_score.c_str(), o_scoreXPos, o_scoreYPos - 60, 35, BLACK);
+		DrawTextEx(font, x_score.c_str(), { (float)x_scoreXPos, (float)x_scoreYPos - 60 }, 40, 3, BLACK);
+		DrawTextEx(font, o_score.c_str(), { (float)o_scoreXPos, (float)o_scoreYPos - 60 }, 40, 3, BLACK);
 
 
 		// Winning line Draw
@@ -285,9 +303,13 @@ void playTicTacToe()
 		{
 			canPlay = false;
 			if (menu.quitButton.isPressed(mousePosition, mousePressed))
+			{
+				PlaySound(buttonPressSound);
 				playing = false;
+			}
 			if (menu.playAgainButton.isPressed(mousePosition, mousePressed))
 			{
+				PlaySound(buttonPressSound);
 				showMenu = false;
 				canPlay = false; // avoid mouse double clicking
 				restartGame();
@@ -295,6 +317,7 @@ void playTicTacToe()
 
 			if (menu.closeMenuButton.isPressed(mousePosition, mousePressed))
 			{
+				PlaySound(buttonPressSound);
 				showMenu = false;
 			}
 
@@ -364,6 +387,7 @@ void playTicTacToe()
 		// menu button
 		if (menuButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			showMenu = !showMenu;
 		}
 
@@ -372,6 +396,7 @@ void playTicTacToe()
 		EndDrawing();
 	}
 
+	UnloadTexture(background);
 	UnloadTexture(oTexture);
 	UnloadTexture(xTexture);
 }

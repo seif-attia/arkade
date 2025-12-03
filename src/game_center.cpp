@@ -9,6 +9,7 @@
 #include "game_center.h"
 
 
+extern Sound buttonPressSound;
 
 void startGameCenter()
 {
@@ -20,7 +21,11 @@ void startGameCenter()
 	// Variables
 	bool playing = true;
 
-	Button backToStartButton("assets/sprites/white_button.png", { 75 , 50 }, 0.3);
+	// background 
+	Texture2D background = LoadTexture("assets/sprites/gamecenter_background.png");
+
+
+	Button backToStartButton("assets/sprites/home.png", { 50 , 50 }, 0.9);
 	Button ticTacToeButton("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
 	Button duckInvadersButton("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
 	Button snakeButton("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
@@ -40,30 +45,36 @@ void startGameCenter()
 		// User Input
 		if (backToStartButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			playing = false;
 		}
 		if (ticTacToeButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			playTicTacToe();
 			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (duckInvadersButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			playDuckInvaders();
 			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (snakeButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			playSnake();
 			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (tetrisButton.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			playTetris();
 			SetWindowSize(screenWidth, screenHeight);
 		}
 		if (game5_button.isPressed(mousePosition, mousePressed))
 		{
+			PlaySound(buttonPressSound);
 			std::cout << "game 5 button is pressed\n";
 		}
 
@@ -71,12 +82,14 @@ void startGameCenter()
 		BeginDrawing();
 		ClearBackground(BLACK);	// Clears every frame
 
+		DrawTexture(background, 0, 0, WHITE);
+
 		// Back Button
 		backToStartButton.Draw();
-		const int backOffset = MeasureText("BACK", 20) / 2;
+		/*const int backOffset = MeasureText("BACK", 20) / 2;
 		const int backX = backToStartButton.getPostion().x + backToStartButton.getWidth() / 2 - backOffset;
 		const int backY = backToStartButton.getPostion().y + backToStartButton.getHeight() / 2 - 20 / 2;
-		DrawText("BACK", backX, backY, 20, BLACK);
+		DrawText("BACK", backX, backY, 20, BLACK);*/
 
 
 		ticTacToeButton.Draw();
@@ -88,4 +101,7 @@ void startGameCenter()
 
 		EndDrawing();
 	}
+
+	UnloadTexture(background);
+
 }

@@ -30,9 +30,9 @@ Menu::Menu(const char* imagePath, Vector2 menuPosition, float scale)
 	closeMenuPosition.x = menuPosition.x + newWidth - 30;
 	closeMenuPosition.y = menuPosition.y + 30;
 
-	quitButton.Init("assets/sprites/menu_buttons.png", quitPosition, 0.3);
-	playAgainButton.Init("assets/sprites/menu_buttons.png", playAgainPosition, 0.3);
-	closeMenuButton.Init("assets/sprites/exit_button.png", closeMenuPosition, 0.15);
+	quitButton.Init("assets/sprites/quit.png", quitPosition, 1);
+	playAgainButton.Init("assets/sprites/retry.png", playAgainPosition, 1);
+	closeMenuButton.Init("assets/sprites/close.png", closeMenuPosition, 1);
 
 	position = menuPosition;
 }
@@ -53,14 +53,14 @@ void Menu::Draw()
 	float quitH = quitButton.getHeight();
 	Vector2 quitPos = quitButton.getPostion();
 
-	const char* quitText = "QUIT";
-	int quitTextWidth = MeasureText(quitText, FONT_SIZE);
+	//const char* quitText = "QUIT";
+	//int quitTextWidth = MeasureText(quitText, FONT_SIZE);
 
 
-	int quitTextX = (int)(quitPos.x + (quitW / 2) - (quitTextWidth / 2));
-	int quitTextY = (int)(quitPos.y + (quitH / 2) - (FONT_SIZE / 2));
+	//int quitTextX = (int)(quitPos.x + (quitW / 2) - (quitTextWidth / 2));
+	//int quitTextY = (int)(quitPos.y + (quitH / 2) - (FONT_SIZE / 2));
 
-	DrawText(quitText, quitTextX, quitTextY, FONT_SIZE, BLACK);
+	//DrawText(quitText, quitTextX, quitTextY, FONT_SIZE, BLACK);
 
 
 
@@ -68,13 +68,13 @@ void Menu::Draw()
 	float playH = playAgainButton.getHeight();
 	Vector2 playPos = playAgainButton.getPostion();
 
-	const char* playText = "PLAY AGAIN";
+	/*const char* playText = "PLAY AGAIN";
 	int playTextWidth = MeasureText(playText, FONT_SIZE);
 
 	int playTextX = (int)(playPos.x + (playW / 2) - (playTextWidth / 2));
 	int playTextY = (int)(playPos.y + (playH / 2) - (FONT_SIZE / 2));
 
-	DrawText(playText, playTextX, playTextY, FONT_SIZE, BLACK);
+	DrawText(playText, playTextX, playTextY, FONT_SIZE, BLACK);*/
 }
 
 Menu::~Menu()

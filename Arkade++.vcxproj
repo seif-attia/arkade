@@ -135,6 +135,7 @@
     <ClCompile Include="src\tic-tac-toe\tic_tac_toe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\button.h" />
     <ClInclude Include="src\duck-invaders\duck.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
@@ -144,6 +145,13 @@
     <ClInclude Include="src\tetris\tetris.h" />
     <ClInclude Include="src\tic-tac-toe\cell.h" />
     <ClInclude Include="src\tic-tac-toe\tic_tac_toe.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Arkade++.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\sprites\arkade++.ico" />
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
