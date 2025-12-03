@@ -16,10 +16,10 @@ int main()
 
 	// Variables
 
-	Button gameCenterButton("assets/sprites/white_button.png", { screenWidth / 2, 2 * screenHeight / 3 }, 0.8);
+	Button gameCenterButton("assets/sprites/white_button.png", { screenWidth / 2, 3 * screenHeight / 4 }, 0.8);
 
 	// LOGO LOADING
-	const float logoScale = 0.3;
+	/*const float logoScale = 0.3;
 	Image image = LoadImage("assets/sprites/arkade_logo.png");
 	int newWidth = image.width * logoScale;
 	int newHeight = image.height * logoScale;
@@ -27,7 +27,15 @@ int main()
 
 	ImageResize(&image, newWidth, newHeight);
 	Texture2D logo = LoadTextureFromImage(image);
-	UnloadImage(image);
+	UnloadImage(image);*/
+
+
+	// Start Background
+
+	Texture2D background = LoadTexture("assets/sprites/start_background.png");
+
+
+
 
 	// Game Loop
 	while (WindowShouldClose() == false)
@@ -48,7 +56,9 @@ int main()
 
 		// LOGO
 
-		DrawTexture(logo, screenWidth / 2 - logo.width / 2, screenHeight / 3 - logo.height / 2, WHITE);
+		//DrawTexture(logo, screenWidth / 2 - logo.width / 2, screenHeight / 3 - logo.height / 2, WHITE);
+
+		DrawTexture(background, 0, 0, WHITE);
 
 
 		// Start Button
@@ -66,7 +76,7 @@ int main()
 		EndDrawing();
 	}
 
-	UnloadTexture(logo);
+	UnloadTexture(background);
 	CloseWindow();
 	return 0;
 }
