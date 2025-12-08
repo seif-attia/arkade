@@ -1,10 +1,15 @@
 #include <raylib.h>
 #include "button.h"
+#include <string>
 
 #include "game_center.h"
 
-Sound buttonPressSound;
+#define MAX_INPUT_CHARS 20
 
+Sound buttonPressSound;
+Font font;
+
+std::string PlayerName;
 
 int main()
 {
@@ -15,6 +20,10 @@ int main()
 	SetTargetFPS(60);
 
 	InitAudioDevice();
+
+	// Font
+
+	font = LoadFont("assets/fonts/MontserratAlternates-Bold.otf");
 
 	//Sounds
 
@@ -35,6 +44,14 @@ int main()
 
 	SetWindowIcon(icon);
 
+
+	// Handle Text Input for player name
+	std::string name = "";
+	bool chosePlayerName = false;
+	bool mouseOnText = false;
+	Rectangle playerNameRec = { 50, 7.0 * screenHeight / 8.0 + 40, 150, 40 };
+	int framesCounter = 0;
+	Color chosen_name_color = { 255,0,76, 255 };
 
 
 
@@ -61,11 +78,67 @@ int main()
 		// Start Button
 		gameCenterButton.Draw();
 
+		// Enter Player Name
+
+		DrawRectangleRec(playerNameRec, WHITE);
+		if (CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
+		{
+			mouseOnText = true;
+		}
+		if (!CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
+		{
+			mouseOnText = false;
+		}
+
+		if (mouseOnText)
+		{
+			SetMouseCursor(MOUSE_CURSOR_IBEAM);
+
+			int key = GetCharPressed();
+			while (key > 0)
+			{
+				if ((key >= 32) && (key <= 126) && name.length() < MAX_INPUT_CHARS)
+				{
+					name += (char)key;
+				}
+
+				key = GetCharPressed();
+
+			}
+			if (IsKeyPressed(KEY_BACKSPACE))
+			{
+				if (!name.empty())
+				{
+					name.pop_back();
+				}
+			}
+
+			if (IsKeyPressed(KEY_ENTER))
+			{
+				PlayerName = name;
+				name = "";
+				mouseOnText = false;
+			}
+		}
+		else
+		{
+			SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+		}
+
+
+		DrawText(name.c_str(), playerNameRec.x + 5, playerNameRec.y + 8, 25, BLACK);
+
+		// Chosen Name
+		std::string chosenName = "Chosen name: " + PlayerName;
+		Vector2 chosenNamePos = { screenWidth - MeasureTextEx(font,chosenName.c_str(),25,3).x - 25, 25 };
+		DrawTextEx(font, chosenName.c_str(), chosenNamePos, 25, 3, chosen_name_color);
+
 
 
 		EndDrawing();
 	}
 
+	UnloadFont(font);
 	UnloadSound(startSound);
 	UnloadSound(buttonPressSound);
 	UnloadTexture(background);

@@ -8,6 +8,7 @@
 
 
 extern Sound buttonPressSound;
+extern Font font;
 
 struct WinningLine
 {
@@ -161,8 +162,6 @@ void playTicTacToe()
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
 	Texture2D xTexture = LoadTexture("assets/sprites/x.png");
-
-	Font font = LoadFont("assets/fonts/MontserratAlternates-Bold.otf");
 
 	// Background
 	Texture2D background = LoadTexture("assets/sprites/tic-tac-toe-background.png");
