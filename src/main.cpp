@@ -129,7 +129,7 @@ int main()
 		DrawText(name.c_str(), playerNameRec.x + 5, playerNameRec.y + 8, 25, BLACK);
 
 		// Chosen Name
-		std::string chosenName = "Chosen name: " + PlayerName;
+		std::string chosenName = "Player name: " + PlayerName;
 		Vector2 chosenNamePos = { screenWidth - MeasureTextEx(font,chosenName.c_str(),25,3).x - 25, 25 };
 		DrawTextEx(font, chosenName.c_str(), chosenNamePos, 25, 3, chosen_name_color);
 
