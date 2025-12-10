@@ -11,6 +11,7 @@ Game::Game()
 	score = 0;
 	music = LoadMusicStream("assets/sounds/tetris/hold_on_tight.mp3");
 	PlayMusicStream(music);
+	SetMusicVolume(music, 0.1);
 	rotateSound = LoadSound("assets/sounds/tetris/rotate.mp3");
 	clearSound = LoadSound("assets/sounds/tetris/clear.mp3");
 }
