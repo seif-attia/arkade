@@ -28,7 +28,7 @@ void playTetris()
 	const int screenHeight = 800;
 
 
-	Font font = LoadFontEx("assetts/fonts/tetris.ttf", 64, 0, 0);
+	Font font = LoadFontEx("assets/fonts/tetris.ttf", 64, 0, 0);
 
 
 	// Flags
@@ -86,6 +86,7 @@ void playTetris()
 		ClearBackground(darkBlue);
 
 		// Game drawing
+		DrawTexture(tetris, 885, 180, WHITE);
 		DrawTexture(arkade, 885, 10, WHITE);
 		DrawTexture(album, 40, 420, WHITE);
 		DrawTextEx(font, "Score:", { 907, 240 }, 60, 2, WHITE);
@@ -120,6 +121,7 @@ void playTetris()
 			if (menu.playAgainButton.isPressed(mousePosition, mousePressed))
 			{
 				PlaySound(buttonPressSound);
+				game.Reset();
 				showMenu = false;
 
 			}

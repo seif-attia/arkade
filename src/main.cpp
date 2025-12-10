@@ -16,6 +16,7 @@ int main()
 	const int screenWidth = 1200;
 	const int screenHeight = 800;
 
+	SetConfigFlags(FLAG_WINDOW_HIGHDPI);
 	InitWindow(screenWidth, screenHeight, "Arkade++");
 	SetTargetFPS(60);
 
