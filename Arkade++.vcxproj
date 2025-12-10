@@ -100,7 +100,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -130,6 +130,12 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\playAgainMenu.cpp" />
     <ClCompile Include="src\snake\snake.cpp" />
+    <ClCompile Include="src\tetris\block.cpp" />
+    <ClCompile Include="src\tetris\blocks.cpp" />
+    <ClCompile Include="src\tetris\colors.cpp" />
+    <ClCompile Include="src\tetris\game.cpp" />
+    <ClCompile Include="src\tetris\grid.cpp" />
+    <ClCompile Include="src\tetris\position.cpp" />
     <ClCompile Include="src\tetris\tetris.cpp" />
     <ClCompile Include="src\tic-tac-toe\cell.cpp" />
     <ClCompile Include="src\tic-tac-toe\tic_tac_toe.cpp" />
@@ -142,6 +148,11 @@
     <ClInclude Include="src\game_center.h" />
     <ClInclude Include="src\playAgainMenu.h" />
     <ClInclude Include="src\snake\snake.h" />
+    <ClInclude Include="src\tetris\block.h" />
+    <ClInclude Include="src\tetris\colors.h" />
+    <ClInclude Include="src\tetris\game.h" />
+    <ClInclude Include="src\tetris\grid.h" />
+    <ClInclude Include="src\tetris\position.h" />
     <ClInclude Include="src\tetris\tetris.h" />
     <ClInclude Include="src\tic-tac-toe\cell.h" />
     <ClInclude Include="src\tic-tac-toe\tic_tac_toe.h" />
