@@ -2,7 +2,22 @@
 #include "tetris.h"
 #include "..\button.h"
 #include "..\playAgainMenu.h"
+#include "game.h"
+#include "colors.h"
+#include <iostream>
 
+double lastUpdateTime = 0;
+
+bool EventTriggered(double interval)
+{
+	double currentTime = GetTime();
+	if (currentTime - lastUpdateTime >= interval)
+	{
+		lastUpdateTime = currentTime;
+		return true;
+	}
+	return false;
+}
 
 void playTetris()
 {
@@ -14,10 +29,8 @@ void playTetris()
 
 	bool playing = true;
 
-	Button quitButton("assets/sprites/white_button.png", { (float)screenWidth / 2, (float)screenHeight / 2 }, 0.5);
-
-
-
+	Button menuButton("assets/sprites/setting.png", { 40, 40 }, 0.9);
+	Menu menu("assets/sprites/menu.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
 
 	while (playing == true)
 	{
@@ -34,28 +47,32 @@ void playTetris()
 			playing = false;
 		}
 
-
-		if (quitButton.isPressed(mousePosition, mousePressed))
-		{
-			playing = false;
-		}
-
-		// Drawing
 		BeginDrawing();
 
-		DrawText("Tetris", 200, 200, 20, WHITE);
+		// Menu buttons input code
+		if (showMenu == true)
+		{
+			
+			if (menu.quitButton.isPressed(mousePosition, mousePressed))
+			{
+				PlaySound(buttonPressSound);
+				playing = false;
+			}
+			if (menu.playAgainButton.isPressed(mousePosition, mousePressed))
+			{
+				PlaySound(buttonPressSound);
+				showMenu = false;
+				
+			}
 
-		ClearBackground(BLACK);
+			if (menu.closeMenuButton.isPressed(mousePosition, mousePressed))
+			{
+				PlaySound(buttonPressSound);
+				showMenu = false;
+			}
 
-		quitButton.Draw();
-
-		// test eyad
-		//
-		//
-		//
-			//
-			//
-
+			menu.Draw();
+		}
 
 		EndDrawing();
 	}
