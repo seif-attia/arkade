@@ -5,6 +5,9 @@
 #include "game.h"
 #include "colors.h"
 #include <cstdio>
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 
 double lastUpdateTime = 0;
@@ -27,9 +30,7 @@ void playTetris()
 	const int screenWidth = 1200;
 	const int screenHeight = 800;
 
-
 	Font font = LoadFontEx("assets/fonts/tetris.ttf", 64, 0, 0);
-
 
 	// Flags
 	bool playing = true;
@@ -40,7 +41,6 @@ void playTetris()
 	// Button Inits
 	Button menuButton("assets/sprites/setting.png", { 40, 40 }, 0.9);
 	Menu menu("assets/sprites/menu.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
-
 
 	// Handles all the sprites
 	Image Tetris = LoadImage("assets/sprites/tetris/Tetris.png");
@@ -59,12 +59,27 @@ void playTetris()
 	UnloadImage(Arkade);
 	UnloadImage(Album);
 
+	int previousscore = 0;
+	static int highscore = 0;
+
+	// Read existing highscore (do not open an ofstream that truncates the file here)
+	{
+		ifstream fin("data/highscore_tetris.txt");
+		if (fin.is_open())
+		{
+			if (!(fin >> highscore))
+			{
+				highscore = 0;
+			}
+			fin.close();
+		}
+	}
+
 	while (playing)
 	{
 		// Mouse position		
 		Vector2 mousePosition = GetMousePosition();
 		bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
-
 
 		// Music
 		UpdateMusicStream(game.music);
@@ -90,6 +105,8 @@ void playTetris()
 		DrawTexture(arkade, 885, 10, WHITE);
 		DrawTexture(album, 40, 420, WHITE);
 		DrawTextEx(font, "Score:", { 907, 240 }, 60, 2, WHITE);
+		DrawTextEx(font, "High score:", { 97, 100 }, 40, 2, WHITE);
+		DrawTextEx(font, "Previous score:", {55, 227 }, 40, 2, WHITE);
 		DrawTextEx(font, "Next:", { 925, 372 }, 60, 2, WHITE);
 		DrawTextEx(font, "Hold On Tight - aespa", { 35, 755 }, 30, 2, WHITE);
 
@@ -97,14 +114,39 @@ void playTetris()
 		{
 			DrawTextEx(font, "GAME", { 895, 630 }, 100, 2, WHITE);
 			DrawTextEx(font, "OVER", { 895, 700 }, 100, 2, WHITE);
+			previousscore = game.score;
+			if (game.score > highscore)
+			{
+				highscore = game.score;
+				// Write the new highscore immediately
+				ofstream fout("data/highscore_tetris.txt", ios::out | ios::trunc);
+				if (fout.is_open())
+				{
+					fout << highscore;
+					fout.close();
+				}
+			}
+
 		}
 		DrawRectangleRounded({ 875, 305, 230, 70 }, 0.3, 6, lightBlue);
+		DrawRectangleRounded({ 90, 150, 230, 70 }, 0.3, 6, lightBlue);
+		DrawRectangleRounded({ 90, 280, 230, 70 }, 0.3, 6, lightBlue);
 
 		char scoreText[10];
 		sprintf(scoreText, "%d", game.score);
 		Vector2 textSize = MeasureTextEx(font, scoreText, 60, 2);
 
+		char highscoreText[10];
+		sprintf(highscoreText, "%d", highscore);
+		Vector2 hstextSize = MeasureTextEx(font, highscoreText, 60, 2);
+
+		char previousscoreText[10];
+		sprintf(previousscoreText, "%d", previousscore);
+		Vector2 pstextSize = MeasureTextEx(font, previousscoreText, 60, 2);
+
 		DrawTextEx(font, scoreText, { 877 + (230 - textSize.x) / 2, 308 }, 60, 2, WHITE);
+		DrawTextEx(font, highscoreText, { 90 + (230 - hstextSize.x) / 2, 152 }, 60, 2, WHITE);
+		DrawTextEx(font, previousscoreText, { 90 + (230 - pstextSize.x) / 2, 282 }, 60, 2, WHITE);
 		DrawRectangleRounded({ 875, 435, 230, 200 }, 0.3, 6, lightBlue);
 		game.Draw();
 
@@ -146,6 +188,16 @@ void playTetris()
 
 
 		EndDrawing();
+	}
+
+	// Ensure highscore is saved on exit as well
+	{
+		ofstream fout("data/highscore_tetris.txt", ios::out | ios::trunc);
+		if (fout.is_open())
+		{
+			fout << highscore;
+			fout.close();
+		}
 	}
 
 	UnloadTexture(tetris);
