@@ -61,7 +61,7 @@ void Game::Draw()
 void Game::HandleInput()
 {
 	int keyPressed = GetKeyPressed();
-	if (gameOver && keyPressed != 0)
+	if (gameOver && keyPressed == KEY_ENTER)
 	{
 		gameOver = false;
 		Reset();

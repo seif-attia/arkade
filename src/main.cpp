@@ -8,6 +8,7 @@
 
 Sound buttonPressSound;
 Font font;
+Music opening_music;
 
 std::string PlayerName;
 
@@ -27,8 +28,10 @@ int main()
 	font = LoadFont("assets/fonts/MontserratAlternates-Bold.otf");
 
 	//Sounds
+	opening_music = LoadMusicStream("assets/sounds/opening.ogg");
+	PlayMusicStream(opening_music);
 
-	Sound startSound = LoadSound("assets/sounds/gamestart.mp3");
+	Sound startSound = LoadSound("assets/sounds/start.ogg");
 
 	buttonPressSound = LoadSound("assets/sounds/Button_Press.mp3");
 
@@ -59,6 +62,7 @@ int main()
 	// Game Loop
 	while (WindowShouldClose() == false)
 	{
+		UpdateMusicStream(opening_music);
 		Vector2 mousePosition = GetMousePosition();
 		bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
@@ -139,6 +143,7 @@ int main()
 		EndDrawing();
 	}
 
+	UnloadMusicStream(opening_music);
 	UnloadFont(font);
 	UnloadSound(startSound);
 	UnloadSound(buttonPressSound);

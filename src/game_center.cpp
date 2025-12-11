@@ -10,6 +10,7 @@
 
 
 extern Sound buttonPressSound;
+extern Music opening_music;
 
 void startGameCenter()
 {
@@ -35,6 +36,7 @@ void startGameCenter()
 	// Game Loop
 	while (playing)
 	{
+		UpdateMusicStream(opening_music);
 		if (WindowShouldClose() == true)
 		{
 			playing = false;

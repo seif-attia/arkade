@@ -166,6 +166,12 @@ void playTicTacToe()
 	// Background
 	Texture2D background = LoadTexture("assets/sprites/tic-tac-toe-background.png");
 
+	Music music = LoadMusicStream("assets/sounds/tic-tac-toe/town.ogg");
+	PlayMusicStream(music);
+	SetMusicVolume(music, 0.5f);
+
+	Sound drawXO = LoadSound("assets/sounds/tic-tac-toe/xo_draw.ogg");
+
 
 	GenTextureMipmaps(&oTexture);
 	GenTextureMipmaps(&xTexture);
@@ -219,6 +225,7 @@ void playTicTacToe()
 
 	while (playing)
 	{
+		UpdateMusicStream(music);
 		if (WindowShouldClose() == true)
 		{
 			playing = false;
@@ -337,6 +344,7 @@ void playTicTacToe()
 						{
 							if (currentPlayer == X_MARK && gameState == PLAYING)
 							{
+								PlaySound(drawXO);
 								cells[r][c].setState(X_MARK);
 								moveCount++;
 
@@ -356,6 +364,7 @@ void playTicTacToe()
 							}
 							else if (currentPlayer == O_MARK && gameState == PLAYING)
 							{
+								PlaySound(drawXO);
 								cells[r][c].setState(O_MARK);
 								moveCount++;
 
@@ -395,6 +404,8 @@ void playTicTacToe()
 		EndDrawing();
 	}
 
+	UnloadSound(drawXO);
+	UnloadMusicStream(music);
 	UnloadTexture(background);
 	UnloadTexture(oTexture);
 	UnloadTexture(xTexture);
