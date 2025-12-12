@@ -10,15 +10,15 @@
 using namespace std;
 
 
-double lastUpdateTime = 0;
+double lastUpdateTimeTetris = 0;
 extern Sound buttonPressSound;
 
 bool EventTriggered(double interval)
 {
 	double currentTime = GetTime();
-	if (currentTime - lastUpdateTime >= interval)
+	if (currentTime - lastUpdateTimeTetris >= interval)
 	{
-		lastUpdateTime = currentTime;
+		lastUpdateTimeTetris = currentTime;
 		return true;
 	}
 	return false;
@@ -36,7 +36,7 @@ void playTetris()
 	bool playing = true;
 	bool showMenu = false;
 
-	Game game = Game();
+	GameTetris game = GameTetris();
 
 	// Button Inits
 	Button menuButton("assets/sprites/setting.png", { 40, 40 }, 0.9);
@@ -106,7 +106,7 @@ void playTetris()
 		DrawTexture(album, 40, 420, WHITE);
 		DrawTextEx(font, "Score:", { 907, 240 }, 60, 2, WHITE);
 		DrawTextEx(font, "High score:", { 97, 100 }, 40, 2, WHITE);
-		DrawTextEx(font, "Previous score:", {55, 227 }, 40, 2, WHITE);
+		DrawTextEx(font, "Previous score:", { 55, 227 }, 40, 2, WHITE);
 		DrawTextEx(font, "Next:", { 925, 372 }, 60, 2, WHITE);
 		DrawTextEx(font, "Hold On Tight - aespa", { 35, 755 }, 30, 2, WHITE);
 

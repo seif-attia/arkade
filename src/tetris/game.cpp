@@ -1,7 +1,7 @@
 #include "game.h"
 #include <random>
 
-Game::Game()
+GameTetris::GameTetris()
 {
 	grid = Grid();
 	blocks = GetAllBlocks();
@@ -16,14 +16,14 @@ Game::Game()
 	clearSound = LoadSound("assets/sounds/tetris/clear.mp3");
 }
 
-Game::~Game()
+GameTetris::~GameTetris()
 {
 	UnloadSound(rotateSound);
 	UnloadSound(clearSound);
 	UnloadMusicStream(music);
 }
 
-Block Game::GetRandomBlock()
+Block GameTetris::GetRandomBlock()
 {
 	if (blocks.empty())
 	{
@@ -35,12 +35,12 @@ Block Game::GetRandomBlock()
 	return block;
 }
 
-std::vector<Block> Game::GetAllBlocks()
+std::vector<Block> GameTetris::GetAllBlocks()
 {
 	return { IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock() };
 }
 
-void Game::Draw()
+void GameTetris::Draw()
 {
 	grid.Draw();
 	currentBlock.Draw(401, 11);
@@ -58,7 +58,7 @@ void Game::Draw()
 	}
 }
 
-void Game::HandleInput()
+void GameTetris::HandleInput()
 {
 	int keyPressed = GetKeyPressed();
 	if (gameOver && keyPressed == KEY_ENTER)
@@ -84,7 +84,7 @@ void Game::HandleInput()
 	}
 }
 
-void Game::MoveBlockLeft()
+void GameTetris::MoveBlockLeft()
 {
 	if (!gameOver)
 	{
@@ -96,7 +96,7 @@ void Game::MoveBlockLeft()
 	}
 }
 
-void Game::MoveBlockRight()
+void GameTetris::MoveBlockRight()
 {
 	if (!gameOver)
 	{
@@ -108,7 +108,7 @@ void Game::MoveBlockRight()
 	}
 }
 
-void Game::MoveBlockDown()
+void GameTetris::MoveBlockDown()
 {
 	if (!gameOver)
 	{
@@ -121,7 +121,7 @@ void Game::MoveBlockDown()
 	}
 }
 
-bool Game::IsBlockOutside()
+bool GameTetris::IsBlockOutside()
 {
 	std::vector<Position> tiles = currentBlock.GetCellPositions();
 	for (Position item : tiles)
@@ -134,7 +134,7 @@ bool Game::IsBlockOutside()
 	return false;
 }
 
-void Game::RotateBlock()
+void GameTetris::RotateBlock()
 {
 	if (!gameOver)
 	{
@@ -150,7 +150,7 @@ void Game::RotateBlock()
 	}
 }
 
-void Game::LockBlock()
+void GameTetris::LockBlock()
 {
 	std::vector<Position> tiles = currentBlock.GetCellPositions();
 	for (Position item : tiles)
@@ -171,7 +171,7 @@ void Game::LockBlock()
 	}
 }
 
-bool Game::BlockFits()
+bool GameTetris::BlockFits()
 {
 	std::vector<Position> tiles = currentBlock.GetCellPositions();
 	for (Position item : tiles)
@@ -184,7 +184,7 @@ bool Game::BlockFits()
 	return true;
 }
 
-void Game::Reset()
+void GameTetris::Reset()
 {
 	grid.Initialize();
 	blocks = GetAllBlocks();
@@ -193,7 +193,7 @@ void Game::Reset()
 	score = 0;
 }
 
-void Game::UpdateScore(int linesCleared, int moveDownPoints)
+void GameTetris::UpdateScore(int linesCleared, int moveDownPoints)
 {
 	switch (linesCleared)
 	{

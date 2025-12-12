@@ -2,11 +2,11 @@
 #include "grid.h"
 #include "blocks.cpp"
 
-class Game
+class GameTetris
 {
 public:
-	Game();
-	~Game();
+	GameTetris();
+	~GameTetris();
 	void Draw();
 	void HandleInput();
 	void MoveBlockDown();
