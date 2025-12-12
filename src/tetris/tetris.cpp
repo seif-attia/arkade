@@ -60,7 +60,7 @@ void playTetris()
 	UnloadImage(Album);
 
 	int previousscore = 0;
-	static int highscore = 0;
+	int highscore = 0;
 
 	// Read existing highscore (do not open an ofstream that truncates the file here)
 	{

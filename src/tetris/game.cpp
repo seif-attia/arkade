@@ -63,7 +63,7 @@ void GameTetris::HandleInput()
 	int keyPressed = GetKeyPressed();
 	if (gameOver && keyPressed == KEY_ENTER)
 	{
-		gameOver = false;
+		//gameOver = false;
 		Reset();
 	}
 	switch (keyPressed)
@@ -76,7 +76,8 @@ void GameTetris::HandleInput()
 		break;
 	case KEY_DOWN:
 		MoveBlockDown();
-		UpdateScore(0, 1);
+		if (gameOver == false)
+			UpdateScore(0, 1);
 		break;
 	case KEY_UP:
 		RotateBlock();
@@ -186,6 +187,7 @@ bool GameTetris::BlockFits()
 
 void GameTetris::Reset()
 {
+	gameOver = false;
 	grid.Initialize();
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();

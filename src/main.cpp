@@ -10,7 +10,7 @@ Sound buttonPressSound;
 Font font;
 Music opening_music;
 
-std::string PlayerName;
+//std::string PlayerName;
 
 int main()
 {
@@ -50,12 +50,12 @@ int main()
 
 
 	// Handle Text Input for player name
-	std::string name = "";
+	/*std::string name = "";
 	bool chosePlayerName = false;
 	bool mouseOnText = false;
 	Rectangle playerNameRec = { 50, 7.0 * screenHeight / 8.0 + 40, 150, 40 };
 	int framesCounter = 0;
-	Color chosen_name_color = { 255,0,76, 255 };
+	Color chosen_name_color = { 255,0,76, 255 };*/
 
 
 
@@ -85,58 +85,58 @@ int main()
 
 		// Enter Player Name
 
-		DrawRectangleRec(playerNameRec, WHITE);
-		if (CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
-		{
-			mouseOnText = true;
-		}
-		if (!CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
-		{
-			mouseOnText = false;
-		}
+		//DrawRectangleRec(playerNameRec, WHITE);
+		//if (CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
+		//{
+		//	mouseOnText = true;
+		//}
+		//if (!CheckCollisionPointRec(mousePosition, playerNameRec) && mousePressed)
+		//{
+		//	mouseOnText = false;
+		//}
 
-		if (mouseOnText)
-		{
-			SetMouseCursor(MOUSE_CURSOR_IBEAM);
+		//if (mouseOnText)
+		//{
+		//	SetMouseCursor(MOUSE_CURSOR_IBEAM);
 
-			int key = GetCharPressed();
-			while (key > 0)
-			{
-				if ((key >= 32) && (key <= 126) && name.length() < MAX_INPUT_CHARS)
-				{
-					name += (char)key;
-				}
+		//	int key = GetCharPressed();
+		//	while (key > 0)
+		//	{
+		//		if ((key >= 32) && (key <= 126) && name.length() < MAX_INPUT_CHARS)
+		//		{
+		//			name += (char)key;
+		//		}
 
-				key = GetCharPressed();
+		//		key = GetCharPressed();
 
-			}
-			if (IsKeyPressed(KEY_BACKSPACE))
-			{
-				if (!name.empty())
-				{
-					name.pop_back();
-				}
-			}
+		//	}
+		//	if (IsKeyPressed(KEY_BACKSPACE))
+		//	{
+		//		if (!name.empty())
+		//		{
+		//			name.pop_back();
+		//		}
+		//	}
 
-			if (IsKeyPressed(KEY_ENTER))
-			{
-				PlayerName = name;
-				name = "";
-				mouseOnText = false;
-			}
-		}
-		else
-		{
-			SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-		}
+		//	if (IsKeyPressed(KEY_ENTER))
+		//	{
+		//		PlayerName = name;
+		//		name = "";
+		//		mouseOnText = false;
+		//	}
+		//}
+		//else
+		//{
+		//	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+		//}
 
 
-		DrawText(name.c_str(), playerNameRec.x + 5, playerNameRec.y + 8, 25, BLACK);
+		//DrawText(name.c_str(), playerNameRec.x + 5, playerNameRec.y + 8, 25, BLACK);
 
-		// Chosen Name
-		std::string chosenName = "Player name: " + PlayerName;
-		Vector2 chosenNamePos = { screenWidth - MeasureTextEx(font,chosenName.c_str(),25,3).x - 25, 25 };
-		DrawTextEx(font, chosenName.c_str(), chosenNamePos, 25, 3, chosen_name_color);
+		//// Chosen Name
+		//std::string chosenName = "Player name: " + PlayerName;
+		//Vector2 chosenNamePos = { screenWidth - MeasureTextEx(font,chosenName.c_str(),25,3).x - 25, 25 };
+		//DrawTextEx(font, chosenName.c_str(), chosenNamePos, 25, 3, chosen_name_color);
 
 
 
