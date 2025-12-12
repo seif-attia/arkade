@@ -227,6 +227,7 @@ void playSnake()
 
 	bool playing = true;
 	bool showMenu = false;
+	bool canTurn = true;
 
 
 
@@ -281,26 +282,32 @@ void playSnake()
 		if (eventTriggered(0.2))
 		{
 			game.update();
+			canTurn = true;
 		}
 
-		if (IsKeyPressed(KEY_UP) && game.snakee.direction.y != 1)
+		if (IsKeyPressed(KEY_UP) && game.snakee.direction.y != 1 && canTurn)
 		{
 			game.snakee.direction = { 0,-1 };
+			canTurn = false;
 		}
 
-		if (IsKeyPressed(KEY_DOWN) && game.snakee.direction.y != -1)
+		if (IsKeyPressed(KEY_DOWN) && game.snakee.direction.y != -1 && canTurn)
 		{
 			game.snakee.direction = { 0,1 };
+			canTurn = false;
 		}
 
-		if (IsKeyPressed(KEY_LEFT) && game.snakee.direction.x != 1)
+		if (IsKeyPressed(KEY_LEFT) && game.snakee.direction.x != 1 && canTurn)
 		{
 			game.snakee.direction = { -1,0 };
+			canTurn = false;
+
 		}
 
-		if (IsKeyPressed(KEY_RIGHT) && game.snakee.direction.x != -1)
+		if (IsKeyPressed(KEY_RIGHT) && game.snakee.direction.x != -1 && canTurn)
 		{
 			game.snakee.direction = { 1,0 };
+			canTurn = false;
 
 		}
 
