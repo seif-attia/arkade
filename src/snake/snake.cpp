@@ -402,7 +402,7 @@ void playSnake()
 
 	// Ensure highscore is saved on exit as well
 	{
-		ofstream fout("data/highscore_tetris.txt", ios::out | ios::trunc);
+		ofstream fout("data/highscore_snake.txt", ios::out | ios::trunc);
 		if (fout.is_open())
 		{
 			fout << highscore;
