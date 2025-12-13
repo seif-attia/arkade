@@ -30,9 +30,6 @@
     <ClCompile Include="src\tic-tac-toe\cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\duck-invaders\duck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\snake\snake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,13 +51,25 @@
     <ClCompile Include="src\tetris\colors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tetris\game.cpp">
+    <ClCompile Include="src\tetris\gameTetris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tetris\grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tetris\position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\duck-invaders\gameDuck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\duck-invaders\laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\duck-invaders\theduck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\duck-invaders\watergun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,9 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tic-tac-toe\cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\duck-invaders\duck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\snake\snake.h">
@@ -101,13 +107,25 @@
     <ClInclude Include="src\tetris\colors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tetris\game.h">
+    <ClInclude Include="src\tetris\gameTetris.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tetris\grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tetris\position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\duck-invaders\gameDuck.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\duck-invaders\laser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\duck-invaders\theduck.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\duck-invaders\watergun.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

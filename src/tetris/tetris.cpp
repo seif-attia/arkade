@@ -2,7 +2,7 @@
 #include "tetris.h"
 #include "..\button.h"
 #include "..\playAgainMenu.h"
-#include "game.h"
+#include "gameTetris.h"
 #include "colors.h"
 #include <cstdio>
 #include <fstream>

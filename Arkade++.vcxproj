@@ -124,8 +124,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\button.cpp" />
-    <ClCompile Include="src\duck-invaders\duck.cpp" />
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp" />
+    <ClCompile Include="src\duck-invaders\gameDuck.cpp" />
+    <ClCompile Include="src\duck-invaders\laser.cpp" />
+    <ClCompile Include="src\duck-invaders\theduck.cpp" />
+    <ClCompile Include="src\duck-invaders\watergun.cpp" />
     <ClCompile Include="src\game_center.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\playAgainMenu.cpp" />
@@ -133,7 +136,7 @@
     <ClCompile Include="src\tetris\block.cpp" />
     <ClCompile Include="src\tetris\blocks.cpp" />
     <ClCompile Include="src\tetris\colors.cpp" />
-    <ClCompile Include="src\tetris\game.cpp" />
+    <ClCompile Include="src\tetris\gameTetris.cpp" />
     <ClCompile Include="src\tetris\grid.cpp" />
     <ClCompile Include="src\tetris\position.cpp" />
     <ClCompile Include="src\tetris\tetris.cpp" />
@@ -143,14 +146,17 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\button.h" />
-    <ClInclude Include="src\duck-invaders\duck.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
+    <ClInclude Include="src\duck-invaders\gameDuck.hpp" />
+    <ClInclude Include="src\duck-invaders\laser.hpp" />
+    <ClInclude Include="src\duck-invaders\theduck.hpp" />
+    <ClInclude Include="src\duck-invaders\watergun.hpp" />
     <ClInclude Include="src\game_center.h" />
     <ClInclude Include="src\playAgainMenu.h" />
     <ClInclude Include="src\snake\snake.h" />
     <ClInclude Include="src\tetris\block.h" />
     <ClInclude Include="src\tetris\colors.h" />
-    <ClInclude Include="src\tetris\game.h" />
+    <ClInclude Include="src\tetris\gameTetris.h" />
     <ClInclude Include="src\tetris\grid.h" />
     <ClInclude Include="src\tetris\position.h" />
     <ClInclude Include="src\tetris\tetris.h" />
