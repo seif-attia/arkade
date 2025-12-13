@@ -27,11 +27,11 @@ void startGameCenter()
 
 
 	Button backToStartButton("assets/sprites/home.png", { 50 , 50 }, 0.9);
-	Button ticTacToeButton("assets/sprites/white_button.png", { screenWidth / 4, screenHeight / 3 }, 0.5);
-	Button duckInvadersButton("assets/sprites/white_button.png", { screenWidth / 2, screenHeight / 3 }, 0.5);
-	Button snakeButton("assets/sprites/white_button.png", { screenWidth / 2 + screenWidth / 4 , screenHeight / 3 }, 0.5);
-	Button tetrisButton("assets/sprites/white_button.png", { screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
-	Button game5_button("assets/sprites/white_button.png", { 2 * screenWidth / 3, 2 * screenHeight / 3 }, 0.5);
+	Button ticTacToeButton("assets/sprites/Tictactoe_button.png", { screenWidth / 4, 2 * screenHeight / 5 }, 0.09);
+	Button duckInvadersButton("assets/sprites/Duck_invaders_button.png", { screenWidth / 2, 2 * screenHeight / 5 }, 0.09);
+	Button snakeButton("assets/sprites/Retro_snake_button.png", { screenWidth / 2 + screenWidth / 4 , 2 * screenHeight / 5 }, 0.09);
+	Button tetrisButton("assets/sprites/Tetris_button.png", { screenWidth / 3, 3 * screenHeight / 5 }, 0.09);
+	Button game5_button("assets/sprites/Ahmed_Aly_button.png", { 2 * screenWidth / 3, 3 * screenHeight / 5 }, 0.09);
 
 	// Game Loop
 	while (playing)
