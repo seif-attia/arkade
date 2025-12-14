@@ -133,15 +133,15 @@ void playTetris()
 		DrawRectangleRounded({ 90, 280, 230, 70 }, 0.3, 6, lightBlue);
 
 		char scoreText[10];
-		sprintf(scoreText, "%d", game.score);
+		sprintf_s(scoreText, 10, "%d", game.score);
 		Vector2 textSize = MeasureTextEx(font, scoreText, 60, 2);
 
 		char highscoreText[10];
-		sprintf(highscoreText, "%d", highscore);
+		sprintf_s(highscoreText, 10, "%d", highscore);
 		Vector2 hstextSize = MeasureTextEx(font, highscoreText, 60, 2);
 
 		char previousscoreText[10];
-		sprintf(previousscoreText, "%d", previousscore);
+		sprintf_s(previousscoreText, 10, "%d", previousscore);
 		Vector2 pstextSize = MeasureTextEx(font, previousscoreText, 60, 2);
 
 		DrawTextEx(font, scoreText, { 877 + (230 - textSize.x) / 2, 308 }, 60, 2, WHITE);
