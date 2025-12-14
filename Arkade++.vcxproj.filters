@@ -72,6 +72,9 @@
     <ClCompile Include="src\duck-invaders\watergun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\car-racing\carRacing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\button.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\duck-invaders\watergun.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\car-racing\carRacing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "snake\snake.h"
 #include "tetris\tetris.h"
 #include "game_center.h"
+#include "car-racing\carRacing.h"
 
 
 extern Sound buttonPressSound;
@@ -31,7 +32,7 @@ void startGameCenter()
 	Button duckInvadersButton("assets/sprites/Duck_invaders_button.png", { screenWidth / 2, 2 * screenHeight / 5 }, 0.4);
 	Button snakeButton("assets/sprites/Retro_snake_button.png", { screenWidth / 2 + screenWidth / 4 , 2 * screenHeight / 5 }, 0.4);
 	Button tetrisButton("assets/sprites/Tetris_button.png", { screenWidth / 3, 3 * screenHeight / 5 }, 0.4);
-	Button game5_button("assets/sprites/Ahmed_Aly_button.png", { 2 * screenWidth / 3, 3 * screenHeight / 5 }, 0.4);
+	Button game5_button("assets/sprites/car_button.png", { 2 * screenWidth / 3, 3 * screenHeight / 5 }, 0.47);
 
 	// Game Loop
 	while (playing)
@@ -77,7 +78,8 @@ void startGameCenter()
 		if (game5_button.isPressed(mousePosition, mousePressed))
 		{
 			PlaySound(buttonPressSound);
-			std::cout << "game 5 button is pressed\n";
+			playCarRacing();
+			SetWindowSize(screenWidth, screenHeight);
 		}
 
 		// Drawing On Screen

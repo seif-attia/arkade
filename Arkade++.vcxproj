@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\button.cpp" />
+    <ClCompile Include="src\car-racing\carRacing.cpp" />
     <ClCompile Include="src\duck-invaders\duck_invaders.cpp" />
     <ClCompile Include="src\duck-invaders\gameDuck.cpp" />
     <ClCompile Include="src\duck-invaders\laser.cpp" />
@@ -146,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\button.h" />
+    <ClInclude Include="src\car-racing\carRacing.h" />
     <ClInclude Include="src\duck-invaders\duck_invaders.h" />
     <ClInclude Include="src\duck-invaders\gameDuck.hpp" />
     <ClInclude Include="src\duck-invaders\laser.hpp" />
