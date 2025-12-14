@@ -204,7 +204,7 @@ public:
 		backMusic = LoadMusicStream("assets/sounds/carRacing/bg3.mp3");
 
 		PlayMusicStream(backMusic);
-		SetMusicVolume(backMusic, 0.4f); // 0.0 → 1.0
+		SetMusicVolume(backMusic, 0.7f); // 0.0 → 1.0
 
 
 		car.init(carTex);

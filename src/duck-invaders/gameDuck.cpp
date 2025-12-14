@@ -12,9 +12,9 @@ GameDuckInvaders::GameDuckInvaders()
 	run = true;
 	music = LoadMusicStream("assets/sounds/duckinvaders/backmusic.mp3");//hena el music bta3ty
 	explosionSound = LoadSound("assets/sounds/duckinvaders/duck.mp3");
-	SetSoundVolume(explosionSound, 0.35);
+	SetSoundVolume(explosionSound, 0.5);
 	PlayMusicStream(music);
-	SetMusicVolume(music, 0.2);
+	SetMusicVolume(music, 0.7);
 	egg = LoadSound("assets/sounds/duckinvaders/egg.ogg");
 	InitGame();
 }
