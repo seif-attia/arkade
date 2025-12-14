@@ -22,7 +22,7 @@ WaterGun::WaterGun()
 	position.y = GetScreenHeight() - waterGunOpened.height - 100;
 	lastFireTime = 0.0;
 	laserSound = LoadSound("assets/sounds/duckinvaders/water_sound.mp3");
-	SetSoundVolume(laserSound, 0.3);
+	SetSoundVolume(laserSound, 0.8);
 }
 WaterGun::~WaterGun()
 {

@@ -169,7 +169,7 @@ void playTicTacToe()
 
 	Music music = LoadMusicStream("assets/sounds/tic-tac-toe/town.ogg");
 	PlayMusicStream(music);
-	SetMusicVolume(music, 0.5f);
+	SetMusicVolume(music, 1);
 
 	Sound drawXO = LoadSound("assets/sounds/tic-tac-toe/xo_draw.ogg");
 
