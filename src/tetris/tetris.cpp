@@ -44,11 +44,11 @@ void playTetris()
 
 	// Handles all the sprites
 	Image Tetris = LoadImage("assets/sprites/tetris/Tetris.png");
-	Image Arkade = LoadImage("assets/sprites/tetris/Arkade.png");
+	Image Arkade = LoadImage("assets/sprites/tetris/arkade_icon.png");
 	Image Album = LoadImage("assets/sprites/tetris/Album.png");
 
 	ImageResize(&Tetris, int(Tetris.width * 0.08), int(Tetris.height * 0.08));
-	ImageResize(&Arkade, int(Arkade.width * 0.015), int(Arkade.height * 0.015));
+	ImageResize(&Arkade, int(Arkade.width * 0.8), int(Arkade.height * 0.8));
 	ImageResize(&Album, int(Album.width * 0.3), int(Album.height * 0.3));
 
 	Texture2D tetris = LoadTextureFromImage(Tetris);

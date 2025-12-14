@@ -158,6 +158,7 @@ void playTicTacToe()
 	bool playing = true;
 	bool canPlay = false;  // to prevent mouse from double clicking at the start
 	bool showMenu = false;
+	bool showPlayAgain = false;
 
 
 	Texture2D oTexture = LoadTexture("assets/sprites/o.png");
@@ -183,6 +184,8 @@ void playTicTacToe()
 	//Button restartButtton("assets/sprites/white_button.png", { screenWidth - 100 , screenHeight - 50 }, 0.4);
 
 	Menu menu("assets/sprites/menu.png", { (float)screenWidth / 2, float(screenHeight) / 2 }, 1);
+
+	Button playAgainButton("assets/sprites/retry.png", { 1100,735 }, 0.7);
 
 
 	float sideLength = 700;
@@ -213,9 +216,10 @@ void playTicTacToe()
 
 
 	// restartGame function
-	auto restartGame = [&cells, &moveCount, &gameState, &currentPlayer, &line]()
+	auto restartGame = [&cells, &moveCount, &gameState, &currentPlayer, &line, &showPlayAgain]()
 		{
 			clearCells(cells);
+			showPlayAgain = false;
 			moveCount = 0;
 			gameState = PLAYING;
 			currentPlayer = X_MARK;
@@ -303,6 +307,11 @@ void playTicTacToe()
 			}
 		}
 
+		if (playAgainButton.isPressed(mousePosition, mousePressed))
+		{
+			restartGame();
+		}
+
 
 		// Menu buttons input code
 		if (showMenu == true)
@@ -351,13 +360,13 @@ void playTicTacToe()
 								if (checkWin(cells, currentPlayer, line))
 								{
 									gameState = X_WON;
-									showMenu = true;
+									showPlayAgain = true;
 									xScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
-									showMenu = true;
+									showPlayAgain = true;
 								}
 								else
 									currentPlayer = O_MARK;
@@ -371,13 +380,13 @@ void playTicTacToe()
 								if (checkWin(cells, currentPlayer, line))
 								{
 									gameState = O_WON;
-									showMenu = true;
+									showPlayAgain = true;
 									oScore++;
 								}
 								else if (moveCount == 9 && gameState == PLAYING)
 								{
 									gameState = DRAW;
-									showMenu = true;
+									showPlayAgain = true;
 								}
 								else
 									currentPlayer = X_MARK;
@@ -388,6 +397,10 @@ void playTicTacToe()
 			}
 		}
 
+		if (showPlayAgain == true)
+		{
+			playAgainButton.Draw();
+		}
 
 		// quit button
 		menuButton.Draw();
