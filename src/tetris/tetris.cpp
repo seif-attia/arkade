@@ -102,7 +102,7 @@ void playTetris()
 
 		// Game drawing
 		DrawTexture(tetris, 885, 180, WHITE);
-		DrawTexture(arkade, 885, 10, WHITE);
+		DrawTexture(arkade, 895, 10, WHITE);
 		DrawTexture(album, 40, 420, WHITE);
 		DrawTextEx(font, "Score:", { 907, 240 }, 60, 2, WHITE);
 		DrawTextEx(font, "High score:", { 97, 100 }, 40, 2, WHITE);
