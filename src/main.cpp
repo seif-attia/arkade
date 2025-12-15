@@ -17,7 +17,6 @@ int main()
 	const int screenWidth = 1200;
 	const int screenHeight = 800;
 
-	SetConfigFlags(FLAG_WINDOW_HIGHDPI);
 	InitWindow(screenWidth, screenHeight, "Arkade++");
 	SetTargetFPS(60);
 
@@ -137,7 +136,6 @@ int main()
 		//std::string chosenName = "Player name: " + PlayerName;
 		//Vector2 chosenNamePos = { screenWidth - MeasureTextEx(font,chosenName.c_str(),25,3).x - 25, 25 };
 		//DrawTextEx(font, chosenName.c_str(), chosenNamePos, 25, 3, chosen_name_color);
-
 
 
 		EndDrawing();

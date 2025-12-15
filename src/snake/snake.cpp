@@ -239,6 +239,7 @@ void playSnake()
 
 	Music music = LoadMusicStream("assets/sounds/snake/snake_music.ogg");
 	PlayMusicStream(music);
+	SetMusicVolume(music, 2.5);
 
 	Texture2D background = LoadTexture("assets/sprites/snake/background.png");
 	Rectangle srcRecBackground = { 0,0, background.width,background.height };
