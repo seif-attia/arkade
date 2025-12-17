@@ -15,6 +15,7 @@ Arkade++ is a minigame center that has 5 minigames:
 - For windows: Just download the zip file from the releases and play right away
 
 - Linux / Mac: Clone the repo and build the project yourself.
+  
 __Dependecies for building:__
 - Raylib
 - make / cmake (Have to create your own config or use Visual Studio if its avaliable)
